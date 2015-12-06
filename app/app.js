@@ -9,7 +9,7 @@ angular.module('myApp', [
   'angular-confirm',
   'ui.bootstrap',
   'myApp.login',
-  //'myApp.orders',
+  'myApp.orders',
   //'myApp.admin',
   //'myApp.admin.menu',
   'myApp.admin.users'

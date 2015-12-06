@@ -4,8 +4,11 @@ angular.module('myApp.login', ['ngRoute'])
  
 .controller('LoginCtrl', ['$scope', '$rootScope', '$location', 'API', '$cookies', '$confirm', function($scope, $rootScope, $location, API, $cookies, $confirm) {
 
-	if ($cookies.get('session') == undefined)
+	if ($cookies.get('session') == undefined){
 		$location.path('/login');
+	}else{
+		$location.path('/orders');
+	}
 
 	API.getUsers().then(function(data){
 		$rootScope.users = data;
@@ -22,6 +25,14 @@ angular.module('myApp.login', ['ngRoute'])
 			});		
 	}
 
-}]) ;
+}])
+
+
+.controller('LogoutCtrl', ['$scope', '$rootScope', '$location', 'API', '$cookies', '$confirm', function($scope, $rootScope, $location, API, $cookies, $confirm) {
+
+	$cookies.put('session', undefined);
+	$location.path('/login');
+
+}]);
 
 
