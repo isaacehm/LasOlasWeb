@@ -1,0 +1,32 @@
+<div class="modal-header ng-scope">
+	<h3 class="modal-title ng-binding">Nuevo usuario</h3>
+</div>
+
+<div class="modal-body ng-binding ng-scope">
+
+	<form>
+		<input type="hidden" name="id" ng-model="user.id">
+		<div> 
+			<div>Nombre:</div>
+			<input type="text" ng-model="user.name">
+		</div>
+	    <div>
+	    	<div>Nombre de usuario:</div>
+	    	<input type="text" ng-model="user.username">
+	    </div>
+	    <div>
+	    	<div>Contraseña:</div>
+	    	<input type="password" ng-model="user.password">
+	    </div>
+	    <div>
+	    	<div>Tipo:</div>
+	    	<input type="radio" ng-model="user.type" value="Common">Común
+	    	<input type="radio" ng-model="user.type" value="Administrator">Administrador
+	    </div>
+	    <div class="modal-footer ng-scope">
+		    <button class="btn btn-primary ng-binding" ng-click="addUser(user)">Añadir</button>
+		    <button class="btn btn-default ng-binding" ng-click="cancel()">Cancelar</button>
+	    </div>
+	</form>
+
+</div>

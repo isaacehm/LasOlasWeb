@@ -1,0 +1,28 @@
+<nav class="navbar navbar-default" role="navigation" bs-navbar>
+	<a class="navbar-brand" href="#">Las Olas</a>
+	<ul class="nav navbar-nav">
+		<li class="main-item" data-match-route="/orders"><a href="#/orders">Pedidos</a></li>
+		<li id="menu" class="active" data-match-route="/admin"><a href="">Administración</a>
+			<ul id="admin-submenu" class="nav submenu">
+				<li data-match-route="/admin.*"><a href="#/admin/menu">Menú</a></li>
+				<li data-match-route="/admin.*"><a href="#/admin/stays">Estancias</a></li>
+				<li data-match-route="/admin.*"><a href="#/admin/users">Usuarios</a></li>
+			</ul>
+		</li>
+		<li class="main-item" data-match-route="/reports.*"><a href="#/reports">Reportes</a></li>
+		<li class="main-item" data-match-route="/logout"><a href="#/logout">Cerrar sesión</a></li>
+	</ul>
+</nav>
+
+<div class="container">
+	<div class="right">
+		<button class="btn btn-primary" ng-click="create()">Añadir usuario</button>
+	</div>
+	<div class="user-info" ng-repeat="user in users">
+		<span class="user-name"><p>{{user.name}}</p></span>
+		<span class="glyphicon glyphicon-remove options delete" title="Eliminar" ng-click="delete(user._id, user.name)"></span>
+		<span class="glyphicon glyphicon-pencil options modify" title="Modificar" ng-click="update(user)"></span>
+	</div>
+</div>
+
+
