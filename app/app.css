@@ -99,6 +99,7 @@
 
 .user-info{
   width: 70%;
+  margin-bottom: 20px !important;
   margin: auto;
   border-bottom: solid red 1.5px;
 }

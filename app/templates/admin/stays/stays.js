@@ -1,8 +1,8 @@
 'use strict';
  
-angular.module('myApp.admin.menu', ['ngRoute'])
+angular.module('myApp.admin.stays', ['ngRoute'])
  
-.controller('MenuCtrl', ['$scope', '$rootScope', '$location', 'API', '$cookies', '$confirm', function($scope, $rootScope, $location, API, $cookies, $confirm) {
+.controller('StaysCtrl', ['$scope', '$rootScope', '$location', 'API', '$cookies', '$confirm', function($scope, $rootScope, $location, API, $cookies, $confirm) {
 
 	if ($cookies.get('session') == undefined)
 		$location.path('/login');

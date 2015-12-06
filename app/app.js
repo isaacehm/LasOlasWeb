@@ -10,8 +10,9 @@ angular.module('myApp', [
   'ui.bootstrap',
   'myApp.login',
   'myApp.orders',
-  //'myApp.admin',
-  //'myApp.admin.menu',
+  'myApp.admin',
+  'myApp.admin.menu',
+  'myApp.admin.stays',
   'myApp.admin.users'
 ]).
 config(['$routeProvider', function($routeProvider) {
@@ -190,7 +191,103 @@ config(['$routeProvider', function($routeProvider) {
 
 
 
-        }
+        },
+
+
+        getStays: function(){
+            var req = {
+                    method: 'GET',
+                    url: myUrl+'/stays',
+                };
+
+                return $http(req).then(function(data) {                 
+                    return data.data;
+                  
+                }, function(data) {
+                    console.log(data.status+": "+data.data.msg);
+                    return false;
+                });
+        },
+
+        updateStay: function(stay){
+
+            var req = {
+                    method: 'PUT',
+                    //url: 'http://localhost:3000/api/user', 
+                    url: myUrl+'/stay/'+stay._id,
+                    headers: { 
+                      'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    transformRequest: function(obj) {
+                        var str = [];
+                        for(var p in obj)
+                            str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+                        return str.join("&");
+                    },
+                    data:{
+                        name: stay.name,
+                        maxNumber: stay.maxNumber,
+                    }
+                };
+
+            return $http(req).then(function(data) {
+                return true;
+              
+            }, function(data) {
+                console.log(data.status+": "+data.data.msg);
+                return false;
+            });
+            
+        },
+
+        addUser: function(stay){
+
+            var req = {
+                    method: 'POST',
+                    url: myUrl+'/stays',
+                    headers: { 
+                      'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    transformRequest: function(obj) {
+                        var str = [];
+                        for(var p in obj)
+                            str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+                        return str.join("&");
+                    },
+                    data:{
+                        name: stay.name,
+                        maxNumber: stay.maxNumber
+                    }
+                };
+
+            return $http(req).then(function(data) {
+                return true;
+              
+            }, function(data) {
+                console.log(data.status+": "+data.data.msg);
+                return false;
+            });
+            
+        },
+
+        deleteStay: function(stayId){
+
+            var req = {
+                    method: 'DELETE',
+                    url: myUrl+'/stay/'+stayId
+                };
+
+            return $http(req).then(function(data) {                 
+                return true;
+              
+            }, function(data) {
+                console.log(data.status+": "+data.data.msg);
+                return false;
+            });
+
+
+
+        },
 
 
 
