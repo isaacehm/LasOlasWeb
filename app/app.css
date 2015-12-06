@@ -93,6 +93,10 @@
   color: #075fbb;
 }
 
+.create{
+  color: green;
+}
+
 .user-name{
   display: inline-block;
 }
@@ -106,4 +110,28 @@
 
 .right{
   float: right;
+}
+
+.panel{
+  width: 80% !important;
+  margin: auto !important;
+}
+
+.panel-group{
+  margin-top: 50px;
+}
+
+.menu-option{
+  margin-right: 15px;
+}
+
+.menu-option:hover{
+  color: #00a0e1;
+  border: solid #00a0e1 1px;
+}
+
+.subcategories{
+  margin-top: 35px !important;
+  margin-left: 0px !important;
+  width: 100% !important;
 }

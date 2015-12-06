@@ -16,13 +16,59 @@
 
 <div class="container">
 	<div class="right">
-		<button class="btn btn-primary" ng-click="create()">Añadir estancia</button>
+		<button class="btn btn-primary" ng-click="createCategory()">Añadir categoria</button>
 	</div>
-	<div class="user-info" ng-repeat="stay in stays">
+
+	<uib-accordion close-others="oneAtATime">
+		<uib-accordion-group is-open="status.open" ng-repeat="category in categories">
+			<uib-accordion-heading>
+				{{category.name}} 
+				<i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
+			</uib-accordion-heading>
+			<span class="pull-right glyphicon glyphicon-remove delete options" title="Eliminar" ng-click="deleteCategory(category._id, category.name)"></span>
+
+			<span class="pull-right glyphicon glyphicon-pencil modify options" title="Modificar" ng-click="updateCategory(category)"></span>
+
+			<span class="pull-right glyphicon glyphicon-plus create options" title="Añadir subcategoría" ng-click="createSubcategory(category.name)"></span>
+
+			<uib-accordion-group class="subcategories" ng-repeat="subcategory in subcategories" ng-if="subcategory.categoryId == category._id">
+				<uib-accordion-heading>
+					{{subcategory.name}}
+					<!--<i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.openSub, 'glyphicon-chevron-right': !status.openSub}"></i>-->
+				</uib-accordion-heading>
+
+				<span class="pull-right glyphicon glyphicon-remove delete options" title="Eliminar" ng-click="deleteSubcategory(subcategory._id, subcategory.name)"></span>
+
+				<span class="pull-right glyphicon glyphicon-pencil modify options" title="Modificar" ng-click="updateSubcategory(subcategory, category.name)"></span>
+
+				<span class="pull-right glyphicon glyphicon-plus create options" title="Añadir producto" ng-click="createProduct(category.name, subcategory.name)"></span>
+
+				<uib-accordion-group class="subcategories" ng-repeat="product in products" ng-if="subcategory._id == product.subcategoryId">
+					<uib-accordion-heading>
+						{{product.name}}
+					</uib-accordion-heading>
+
+					<span class="pull-right glyphicon glyphicon-remove delete options" title="Eliminar" ng-click="deleteProduct(product._id, product.name)"></span>
+
+					<span class="pull-right glyphicon glyphicon-pencil modify options" title="Modificar" ng-click="updateProduct(product, subcategory.name, category.name)"></span>
+
+					<span><label>Precio: </label>{{product.price}}</span>
+					<br>
+					<span ng-if="product.stock != -1"><label>Stock: </label>{{product.stock}}</span>
+
+				</uib-accordion-group>
+
+			</uib-accordion-group>
+
+		</uib-accordion-group>
+	</uib-accordion>
+
+
+	<!--<div class="user-info" ng-repeat="stay in stays">
 		<span class="user-name"><p>{{stay.name}}</p></span>
 		<span class="glyphicon glyphicon-remove options delete" title="Eliminar" ng-click="delete(stay._id, stay.name)"></span>
 		<span class="glyphicon glyphicon-pencil options modify" title="Modificar" ng-click="update(stay)"></span>
-	</div>
+	</div>-->
 </div>
 
 

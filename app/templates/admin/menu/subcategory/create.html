@@ -1,5 +1,5 @@
 <div class="modal-header ng-scope">
-	<h3 class="modal-title ng-binding">Añadir estancia</h3>
+	<h3 class="modal-title ng-binding">Añadir subcategoría</h3>
 </div>
 
 <div class="modal-body ng-binding ng-scope">
@@ -7,17 +7,11 @@
 	<form>
 		<div> 
 			<div>Nombre:</div>
-			<input type="text" ng-model="stay.name">
+			<input type="text" ng-model="subcategory">
 		</div>
-
-		<div> 
-			<div>Numero máximo:</div>
-			<input type="number" ng-model="stay.maxNumber">
-		</div>
-
 
 	    <div class="modal-footer ng-scope">
-		    <button class="btn btn-primary ng-binding" ng-click="addStay(stay)">Guardar</button>
+		    <button class="btn btn-primary ng-binding" ng-click="addSubcategory(subcategory, data.category)">Guardar</button>
 		    <button class="btn btn-default ng-binding" ng-click="cancel()">Cancelar</button>
 	    </div>
 	</form>

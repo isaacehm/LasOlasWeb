@@ -13,7 +13,7 @@ angular.module('myApp.admin.stays', ['ngRoute'])
 
 	$scope.delete = function(stayId, name){ 
 		
-		$confirm({text: '¿Desea eliminar la estancia, '+name+'?', title: 'Eliminar usuario', ok: 'Si', cancel: 'No'})
+		$confirm({text: '¿Desea eliminar la estancia, '+name+'?', title: 'Eliminar estancia', ok: 'Si', cancel: 'No'})
 			.then(function() {
 				if(API.deleteStay(stayId)){
 					$location.path('/admin');

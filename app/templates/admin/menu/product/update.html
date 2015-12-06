@@ -1,0 +1,36 @@
+<div class="modal-header ng-scope">
+	<h3 class="modal-title ng-binding">Modificar producto</h3>
+</div>
+
+<div class="modal-body ng-binding ng-scope">
+
+	<form>
+		<div> 
+			<label>Nombre:</label>
+			<input type="text" ng-model="data.product.name" ng-value="data.product.name">
+		</div>
+
+		<div> 
+			<label>Limitado:</label>
+			<input type="radio" ng-model="data.product.limited" ng-value="true" ng-checked="data.product.stock != -1">
+			<label>No limitado:</label>
+			<input type="radio" ng-model="data.product.limited" ng-value="false" ng-checked="data.product.stock == -1">
+		</div>
+
+		<div ng-show="data.product.limited">
+			<label>Stock:</label>
+			<input type="number" ng-model="data.product.stock" ng-value="data.product.stock">
+		</div>
+
+		<div> 
+			<label>Precio:</label>
+			<input type="text" ng-model="data.product.price" ng-value="data.product.price">
+		</div>
+
+	    <div class="modal-footer ng-scope">
+		    <button class="btn btn-primary ng-binding" ng-click="updateProduct(data.product, data.category, data.subcategory)">Guardar</button>
+		    <button class="btn btn-default ng-binding" ng-click="cancel()">Cancelar</button>
+	    </div>
+	</form>
+
+</div>

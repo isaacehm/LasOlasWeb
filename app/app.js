@@ -61,6 +61,9 @@ config(['$routeProvider', function($routeProvider) {
 
 	var employee = null;
 	var users = null;
+    var categories = null;
+    var subcategories = null;
+    var products = null;
 
 	return{
 		login: function(username, password){
@@ -240,7 +243,7 @@ config(['$routeProvider', function($routeProvider) {
             
         },
 
-        addUser: function(stay){
+        addStay: function(stay){
 
             var req = {
                     method: 'POST',
@@ -284,9 +287,299 @@ config(['$routeProvider', function($routeProvider) {
                 console.log(data.status+": "+data.data.msg);
                 return false;
             });
+        },
+
+        initCategories: function(){
+            var req = {
+                    method: 'GET',
+                    url: myUrl+'/categories',
+                };
+
+                return $http(req).then(function(data) {                 
+                    categories = data.data;
+                    return categories;
+                  
+                }, function(data) {
+                    console.log(data.status+": "+data.data.msg);
+                    return false;
+                });
+        },
+
+        initSubcategories: function(){
+            var req = {
+                    method: 'GET',
+                    url: myUrl+'/subcategories',
+                };
+
+                return $http(req).then(function(data) {                 
+                    subcategories = data.data;
+                    return subcategories;
+                  
+                }, function(data) {
+                    console.log(data.status+": "+data.data.msg);
+                    return false;
+                });
+        },
+
+        initProducts: function(){
+            var req = {
+                    method: 'GET',
+                    url: myUrl+'/products',
+                };
+
+                return $http(req).then(function(data) {                 
+                    products = data.data;
+                    return products;
+                  
+                }, function(data) {
+                    console.log(data.status+": "+data.data.msg);
+                    return false;
+                });
+        },
+
+        updateCategory: function(category){
+
+            var req = {
+                    method: 'PUT',
+                    url: myUrl+'/category/'+category._id,
+                    headers: { 
+                      'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    transformRequest: function(obj) {
+                        var str = [];
+                        for(var p in obj)
+                            str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+                        return str.join("&");
+                    },
+                    data:{
+                        name: category.name
+                    }
+                };
+
+            return $http(req).then(function(data) {
+                return true;
+              
+            }, function(data) {
+                console.log(data.status+": "+data.data.msg);
+                return false;
+            });
+            
+        },
+
+        addCategory: function(category){
+
+            var req = {
+                    method: 'POST',
+                    url: myUrl+'/categories',
+                    headers: { 
+                      'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    transformRequest: function(obj) {
+                        var str = [];
+                        for(var p in obj)
+                            str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+                        return str.join("&");
+                    },
+                    data:{
+                        name: category
+                    }
+                };
+
+            return $http(req).then(function(data) {
+                return true;
+              
+            }, function(data) {
+                console.log(data.status+": "+data.data.msg);
+                return false;
+            });
+            
+        },
+
+        deleteCategory: function(categoryId){
+
+            var req = {
+                    method: 'DELETE',
+                    url: myUrl+'/category/'+categoryId
+                };
+
+            return $http(req).then(function(data) {                 
+                return true;
+              
+            }, function(data) {
+                console.log(data.status+": "+data.data.msg);
+                return false;
+            });
+        },
+
+
+        updateSubcategory: function(subcategory, category){
+
+            var req = {
+                    method: 'PUT',
+                    url: myUrl+'/subcategory/'+subcategory._id,
+                    headers: { 
+                      'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    transformRequest: function(obj) {
+                        var str = [];
+                        for(var p in obj)
+                            str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+                        return str.join("&");
+                    },
+                    data:{
+                        name: subcategory.name,
+                        category: category
+                    }
+                };
+
+            return $http(req).then(function(data) {
+                return true;
+              
+            }, function(data) {
+                console.log(data.status+": "+data.data.msg);
+                return false;
+            });
+            
+        },
+
+
+        addSubcategory: function(subcategory, category){
+
+            var req = {
+                    method: 'POST',
+                    url: myUrl+'/subcategories',
+                    headers: { 
+                      'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    transformRequest: function(obj) {
+                        var str = [];
+                        for(var p in obj)
+                            str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+                        return str.join("&");
+                    },
+                    data:{
+                        name: subcategory,
+                        category: category
+                    }
+                };
+
+            return $http(req).then(function(data) {
+                return true;
+              
+            }, function(data) {
+                console.log(data.status+": "+data.data.msg);
+                return false;
+            });
+            
+        },
+
+        deleteSubcategory: function(subcategoryId){
+
+            var req = {
+                    method: 'DELETE',
+                    url: myUrl+'/subcategory/'+subcategoryId
+                };
+
+            return $http(req).then(function(data) {                 
+                return true;
+              
+            }, function(data) {
+                console.log(data.status+": "+data.data.msg);
+                return false;
+            });
+        },
 
 
 
+        addProduct: function(product, category, subcategory){
+
+            if(!product.limited)
+                product.stock = -1;
+
+            var req = {
+                    method: 'POST',
+                    url: myUrl+'/products',
+                    headers: { 
+                      'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    transformRequest: function(obj) {
+                        var str = [];
+                        for(var p in obj)
+                            str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+                        return str.join("&");
+                    },
+                    data:{
+                        name: product.name,
+                        stock: product.stock,
+                        price: product.price,
+                        category: category,
+                        subcategory: subcategory
+                    }
+                };
+
+            return $http(req).then(function(data) {
+                return true;
+              
+            }, function(data) {
+                console.log(data.status+": "+data.data.msg);
+                return false;
+            });
+            
+        },
+
+        deleteProduct: function(productId){
+
+            var req = {
+                    method: 'DELETE',
+                    url: myUrl+'/product/'+productId
+                };
+
+            return $http(req).then(function(data) {                 
+                return true;
+              
+            }, function(data) {
+                console.log(data.status+": "+data.data.msg);
+                return false;
+            });
+        },
+
+        updateProduct: function(product, subcategory, category){
+
+            console.log(product.name);
+            console.log(product.stock);
+            console.log(product.price);
+            console.log(category);
+            console.log(subcategory);
+
+            var req = {
+                    method: 'PUT',
+                    url: myUrl+'/product/'+product._id,
+                    headers: { 
+                      'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    transformRequest: function(obj) {
+                        var str = [];
+                        for(var p in obj)
+                            str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+                        return str.join("&");
+                    },
+                    data:{
+                        name: product.name,
+                        stock: product.stock,
+                        price: product.price,
+                        category: category,
+                        subcategory: subcategory
+                    }
+                };
+
+            return $http(req).then(function(data) {
+                return true;
+              
+            }, function(data) {
+                console.log(data.status+": "+data.data.msg);
+                return false;
+            });
+            
         },
 
 
