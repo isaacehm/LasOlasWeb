@@ -7,7 +7,100 @@ angular.module('myApp.orders', ['ngRoute'])
 	if ($cookies.get('session') == undefined)
 		$location.path('/login');
 
+	API.initOrders().then(function(data){
+		var date = new Date();
+		if(date.getDate() < 10){
+			var today = date.getFullYear()+"-"+date.getMonth()+"-0"+date.getDate()
+		}else{
+			var today = date.getFullYear()+"-"+date.getMonth()+"-"+date.getDate()
+		}
 
+		//console.log(today);
+
+		var orders = API.getOrders();
+		var order;
+		var actualOrders = [];
+		for (order in orders){
+			//console.log('fecha orden: '+orders[order].date.substring(0,10));
+			//console.log('fecha servidor: '+today)
+			if( orders[order].date.substring(0,10) != today)
+				actualOrders.push(orders[order]);
+		}
+
+		if(actualOrders.length > 0){
+			$rootScope.orders = actualOrders;
+		}else{
+			$rootScope.orders = null;
+		}
+    });
+
+    $scope.printOrder = function(order){
+    	console.log(order.status);
+
+    	API.updateOrder(order, 'Procesada').then(function(data){
+
+    		API.initOrders().then(function(data){
+				var date = new Date();
+				if(date.getDate() < 10){
+					var today = date.getFullYear()+"-"+date.getMonth()+"-0"+date.getDate()
+				}else{
+					var today = date.getFullYear()+"-"+date.getMonth()+"-"+date.getDate()
+				}
+
+				//console.log(today);
+
+				var orders = API.getOrders();
+				var order;
+				var actualOrders = [];
+				for (order in orders){
+					//console.log('fecha orden: '+orders[order].date.substring(0,10));
+					//console.log('fecha servidor: '+today)
+					if( orders[order].date.substring(0,10) != today)
+						actualOrders.push(orders[order]);
+				}
+
+				if(actualOrders.length > 0){
+					$rootScope.orders = actualOrders;
+				}else{
+					$rootScope.orders = null;
+				}
+		    });
+    	});
+	}
+
+	$scope.chargeOrder = function(order){
+    	console.log(order.status);
+
+    	API.updateOrder(order, 'Cobrada').then(function(data){
+
+    		API.initOrders().then(function(data){
+				var date = new Date();
+				if(date.getDate() < 10){
+					var today = date.getFullYear()+"-"+date.getMonth()+"-0"+date.getDate()
+				}else{
+					var today = date.getFullYear()+"-"+date.getMonth()+"-"+date.getDate()
+				}
+
+				//console.log(today);
+
+				var orders = API.getOrders();
+				var order;
+				var actualOrders = [];
+				for (order in orders){
+					//console.log('fecha orden: '+orders[order].date.substring(0,10));
+					//console.log('fecha servidor: '+today)
+					if( orders[order].date.substring(0,10) != today)
+						actualOrders.push(orders[order]);
+				}
+
+				if(actualOrders.length > 0){
+					$rootScope.orders = actualOrders;
+				}else{
+					$rootScope.orders = null;
+				}
+		    });
+    	});
+	}
 
 }]);
 

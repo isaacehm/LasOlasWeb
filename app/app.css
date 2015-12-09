@@ -135,3 +135,56 @@
   margin-left: 0px !important;
   width: 100% !important;
 }
+
+ul, li{
+  list-style-type: none;
+}
+
+.product span{
+  float: right;
+  margin-right: 5px;
+}
+
+.status-0{
+  color: red;
+}
+
+.product-status-0{
+  border-bottom: solid 1px red;
+  width: 40%;
+}
+
+.status-1{
+  color: yellow;
+}
+
+.product-status-1{
+  border-bottom: solid 1px yellow;
+  width: 40%;
+}
+
+.status-2{
+  color: green;
+}
+
+.product-status-2{
+  border-bottom: solid 1px green;
+  width: 40%;
+}
+
+.order-total{
+  float: right;
+  font-weight: bold;
+}
+
+.product-name{
+  font-weight: bold;
+}
+
+.createProduct{
+  color: #075fbb;
+}
+
+.products{
+  width: 50% !important;
+}

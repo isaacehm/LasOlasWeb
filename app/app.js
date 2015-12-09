@@ -64,12 +64,12 @@ config(['$routeProvider', function($routeProvider) {
     var categories = null;
     var subcategories = null;
     var products = null;
+    var orders = {};
 
 	return{
 		login: function(username, password){
             var req = {
                     method: 'POST',
-                    //url: 'http://localhost:3000/api/user', 
                     url: myUrl+'/user',
                     headers: { 
                       'Content-Type': 'application/x-www-form-urlencoded'
@@ -545,12 +545,6 @@ config(['$routeProvider', function($routeProvider) {
 
         updateProduct: function(product, subcategory, category){
 
-            console.log(product.name);
-            console.log(product.stock);
-            console.log(product.price);
-            console.log(category);
-            console.log(subcategory);
-
             var req = {
                     method: 'PUT',
                     url: myUrl+'/product/'+product._id,
@@ -581,6 +575,61 @@ config(['$routeProvider', function($routeProvider) {
             });
             
         },
+
+        initOrders: function(){
+            var req = {
+                    method: 'GET',
+                    url: myUrl+'/orders',
+                };
+
+                return $http(req).then(function(data) {                 
+                    orders = data.data;
+                    //return true;
+                  
+                }, function(data) {
+                    console.log(data.status+": "+data.data.msg);
+                    return false;
+                });
+        },
+
+        getOrders: function(){
+            return orders;            
+        },
+
+        updateOrder: function(order, status){
+
+            var req = {
+                    method: 'PUT',
+                    url: myUrl+'/order/'+order._id,
+                    headers: { 
+                      'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    transformRequest: function(obj) {
+                        var str = [];
+                        for(var p in obj)
+                            str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+                        return str.join("&");
+                    },
+                    data:{
+                        employee: order.employee,
+                        stay: order.stay,
+                        stayNumber: order.stayNumber,
+                        //products: order.products,
+                        status: status
+                    }
+                };
+
+            return $http(req).then(function(data) {
+                return true;
+              
+            }, function(data) {
+                console.log(data.status+": "+data.data.msg);
+                return false;
+            });
+            
+        },
+
+
 
 
 
