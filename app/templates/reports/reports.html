@@ -1,0 +1,108 @@
+<nav class="navbar navbar-default" role="navigation" bs-navbar>
+	<a class="navbar-brand" href="#">Las Olas</a>
+	<ul class="nav navbar-nav">
+		<li class="main-item" data-match-route="/orders"><a href="#/orders">Pedidos</a></li>
+		<li id="menu" class="hovered" data-match-route="/admin"><a href="">Administración</a>
+			<ul id="admin-submenu" class="nav submenu">
+				<li data-match-route="/admin.*"><a href="#/admin/menu">Menú</a></li>
+				<li data-match-route="/admin.*"><a href="#/admin/stays">Estancias</a></li>
+				<li data-match-route="/admin.*"><a href="#/admin/users">Usuarios</a></li>
+			</ul>
+		</li>
+		<li class="main-item active" data-match-route="/reports.*"><a href="#/reports">Reportes</a></li>
+		<li class="main-item" data-match-route="/logout"><a href="#/logout">Cerrar sesión</a></li>
+	</ul>
+</nav>
+
+<div id="report-menu">
+	<form>
+		<div id="picker-container">
+			<p>Por favor, seleccione una fecha a consultar:</p>
+			<input id="datePicker" type="date" name="date" ng-model="date" ng-value="today">
+		</div>
+		<br>
+		<!--<div><button type="button" class="btn btn-info" ng-click="type1(date)">Ventas por empleado</button></div>-->
+				
+		<div><button type="button" class="btn btn-info" ng-click="type2(date)">Total facturados</button></div>
+
+		<!--<div><button type="button" class="btn btn-info" ng-click="type3(date)">Total productos vendidos</button></div>-->
+
+		<div style="float: right"><button type="button" class="btn btn-info" ng-click="type4()">Ver stock actual</button></div>
+	</form>
+</div>
+
+
+
+
+<div class="container" ng-if="reportType == '1'">
+	<div ng-repeat="order in orders">
+		Tipo 1
+	</div>
+</div>
+
+<div class="container" ng-if="reportType == '2'">
+	<div ng-if="orders == null">
+		<h2>No existen ordenes registradas para la fecha seleccionada.</h2>
+	</div>
+
+	<uib-accordion close-others="oneAtATime">
+		<uib-accordion-group is-open="status.open" ng-repeat="order in orders" ng-if="orders != null">
+			<uib-accordion-heading>
+				{{order.stay}} {{order.stayNumber}}
+				<i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
+			</uib-accordion-heading>
+
+			<ul>
+				<li><h4>Pedido registrado por: {{order.employee}}</h4></li>
+				<li ng-repeat="product in order.products">
+					<h4 class="product-name">{{product.name}}</h4>
+					<ul>
+						<li class="product product-order product-status-0">
+							<strong>Cantidad:</strong> <span>{{product.order}}</span>
+						</li>
+
+						<li class="product product-total product-status-0">
+							<strong>Total:</strong> <span>$ {{product.total}}</span>
+						</li>
+
+						<li class="product product-note product-status-0" ng-if="product.note != ''">
+							<strong>Nota:</strong> <span>{{product.note}}</span>
+						</li>
+					</ul>
+				</li>
+			</ul>
+
+			<h3 class="order-total">Total orden: $ {{order.total}}</h3>
+
+		</uib-accordion-group>
+	</uib-accordion>
+
+
+	
+	<div id="total" ng-if="orders != null">
+		<h3>TOTAL FACTURADO: ${{total}}</h3>
+	</div>
+
+</div>
+
+<div class="container" ng-if="reportType == '3'">
+	<div ng-repeat="order in orders">
+		Tipo 3
+	</div>	
+</div>
+
+<div id="stock-container" class="container" ng-if="reportType == '4'">
+	<table>
+		<tr>
+			<th>Nombre del producto</th>
+			<th>Precio</th>
+			<th>Cantidad en almacen</th>
+		</tr>
+		<tr ng-repeat="order in orders">
+			<td>{{order.name}}</td>
+			<td>${{order.price}}</td>
+			<td>{{order.stock}}</td>
+		</tr>
+	</table>
+
+</div>

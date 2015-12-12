@@ -19,7 +19,10 @@ angular.module('myApp.login', ['ngRoute'])
 		if (user)
 			API.login(user.username, user.password).then(function(data){
 				if(data.type == 'Administrator'){
-					$cookies.put('session', data._id);
+					var expireDate = new Date();
+  					expireDate.setDate(expireDate.getDate() + 1);
+  					
+					$cookies.put('session', data._id, {'expires': expireDate});
 					$location.path('/orders');
 				}
 			});		

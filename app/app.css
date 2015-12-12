@@ -188,3 +188,52 @@ ul, li{
 .products{
   width: 50% !important;
 }
+
+#report-menu{
+  width: 60%;
+  margin: auto;
+}
+
+#report-menu div{
+  display: inline-flex;
+  margin: 5px;
+}
+
+#datePicker{
+  margin-left: 20px;
+  border-radius: 8px;
+  height: 30px;
+  border: solid 1px #075fbb;
+  padding: 4px;
+  width: 200px;
+  font-size: 15px;
+}
+
+#total{
+  float: right;
+}
+
+#picker-container p{
+  line-height: 2;
+}
+
+table{
+  width: 100%;
+  text-align: center;
+}
+
+table td{
+  padding: 5px;
+}
+
+table tr{
+  margin: 5px;
+}
+
+table tr th{
+  text-align: center;
+}
+
+#stock-container{
+  margin-top: 20px !important;
+}

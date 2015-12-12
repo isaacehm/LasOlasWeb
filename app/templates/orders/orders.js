@@ -7,12 +7,43 @@ angular.module('myApp.orders', ['ngRoute'])
 	if ($cookies.get('session') == undefined)
 		$location.path('/login');
 
+	var socket = API.getSocket();
+
+	socket.on('new order', function(order){
+
+		$confirm({order: order}, { templateUrl: 'templates/orders/new.html' });
+
+		API.initOrders().then(function(data){
+			var date = new Date();
+			if(date.getDate() < 10){
+				var today = date.getFullYear()+"-"+(date.getMonth()+1)+"-0"+date.getDate()
+			}else{
+				var today = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate()
+			}
+
+			var orders = API.getOrders();
+			var order;
+			var actualOrders = [];
+			for (order in orders)
+				if( orders[order].date.substring(0,10) == today)
+					actualOrders.push(orders[order]);
+
+			if(actualOrders.length > 0){
+				$rootScope.orders = actualOrders;
+			}else{
+				$rootScope.orders = null;
+			}
+	    });
+		
+
+	});
+
 	API.initOrders().then(function(data){
 		var date = new Date();
 		if(date.getDate() < 10){
-			var today = date.getFullYear()+"-"+date.getMonth()+"-0"+date.getDate()
+			var today = date.getFullYear()+"-"+(date.getMonth()+1)+"-0"+date.getDate()
 		}else{
-			var today = date.getFullYear()+"-"+date.getMonth()+"-"+date.getDate()
+			var today = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate()
 		}
 
 		//console.log(today);
@@ -20,12 +51,9 @@ angular.module('myApp.orders', ['ngRoute'])
 		var orders = API.getOrders();
 		var order;
 		var actualOrders = [];
-		for (order in orders){
-			//console.log('fecha orden: '+orders[order].date.substring(0,10));
-			//console.log('fecha servidor: '+today)
-			if( orders[order].date.substring(0,10) != today)
+		for (order in orders)
+			if( orders[order].date.substring(0,10) == today)
 				actualOrders.push(orders[order]);
-		}
 
 		if(actualOrders.length > 0){
 			$rootScope.orders = actualOrders;

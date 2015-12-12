@@ -10,6 +10,7 @@ angular.module('myApp', [
   'ui.bootstrap',
   'myApp.login',
   'myApp.orders',
+  'myApp.reports',
   'myApp.admin',
   'myApp.admin.menu',
   'myApp.admin.stays',
@@ -30,6 +31,11 @@ config(['$routeProvider', function($routeProvider) {
 	.when('/orders', {
         templateUrl: 'templates/orders/orders.html',
         controller: 'OrdersCtrl'
+    })
+
+    .when('/reports', {
+        templateUrl: 'templates/reports/reports.html',
+        controller: 'ReportsCtrl'
     })
 
     .when('/admin', {
@@ -59,6 +65,7 @@ config(['$routeProvider', function($routeProvider) {
 
 .factory('API', ['$http', function($http) {
 
+    var socket = io('http://localhost:3000');
 	var employee = null;
 	var users = null;
     var categories = null;
@@ -628,6 +635,10 @@ config(['$routeProvider', function($routeProvider) {
             });
             
         },
+
+        getSocket: function(){
+            return socket;
+        }
 
 
 
