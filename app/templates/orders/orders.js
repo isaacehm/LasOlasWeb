@@ -70,9 +70,9 @@ angular.module('myApp.orders', ['ngRoute'])
     		API.initOrders().then(function(data){
 				var date = new Date();
 				if(date.getDate() < 10){
-					var today = date.getFullYear()+"-"+date.getMonth()+"-0"+date.getDate()
+					var today = date.getFullYear()+"-"+(date.getMonth()+1)+"-0"+date.getDate()
 				}else{
-					var today = date.getFullYear()+"-"+date.getMonth()+"-"+date.getDate()
+					var today = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate()
 				}
 
 				//console.log(today);
@@ -83,7 +83,7 @@ angular.module('myApp.orders', ['ngRoute'])
 				for (order in orders){
 					//console.log('fecha orden: '+orders[order].date.substring(0,10));
 					//console.log('fecha servidor: '+today)
-					if( orders[order].date.substring(0,10) != today)
+					if( orders[order].date.substring(0,10) == today)
 						actualOrders.push(orders[order]);
 				}
 
@@ -104,9 +104,9 @@ angular.module('myApp.orders', ['ngRoute'])
     		API.initOrders().then(function(data){
 				var date = new Date();
 				if(date.getDate() < 10){
-					var today = date.getFullYear()+"-"+date.getMonth()+"-0"+date.getDate()
+					var today = date.getFullYear()+"-"+(date.getMonth()+1)+"-0"+date.getDate()
 				}else{
-					var today = date.getFullYear()+"-"+date.getMonth()+"-"+date.getDate()
+					var today = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate()
 				}
 
 				//console.log(today);
@@ -117,7 +117,7 @@ angular.module('myApp.orders', ['ngRoute'])
 				for (order in orders){
 					//console.log('fecha orden: '+orders[order].date.substring(0,10));
 					//console.log('fecha servidor: '+today)
-					if( orders[order].date.substring(0,10) != today)
+					if( orders[order].date.substring(0,10) == today)
 						actualOrders.push(orders[order]);
 				}
 
