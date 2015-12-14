@@ -15,7 +15,45 @@ angular.module('myApp.reports', ['ngRoute'])
 	}
 
 
-	$scope.type1 = function(){ 
+	$scope.type1 = function(){
+
+
+		if(date == undefined)
+			date = new Date();
+
+		if(date.getDate() < 10){
+			var selectedDate = date.getFullYear()+"-"+(date.getMonth()+1)+"-0"+date.getDate()
+		}else{
+			var selectedDate = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate()
+		}
+		
+		API.initOrders().then(function(data){
+
+			var orders = API.getOrders();
+			var order;
+			var selectedOrders = [];
+			var total = 0.0;
+
+			for (order in orders)
+				if( orders[order].date.substring(0,10) == selectedDate){
+					selectedOrders.push(orders[order]);
+					total += parseFloat(orders[order].total);
+				}
+
+			if(selectedOrders.length > 0){
+				$rootScope.orders = selectedOrders;
+				$rootScope.total = total;
+			}else{
+				$rootScope.orders = null;
+			}
+
+			API.getUsers().then(function(data){
+				$rootScope.employees = data;
+			});
+	    });
+
+
+
 
 		$rootScope.reportType = '1';
 	}

@@ -21,7 +21,7 @@
 			<input id="datePicker" type="date" name="date" ng-model="date" ng-value="today">
 		</div>
 		<br>
-		<!--<div><button type="button" class="btn btn-info" ng-click="type1(date)">Ventas por empleado</button></div>-->
+		<div><button type="button" class="btn btn-info" ng-click="type1(date)">Ventas por empleado</button></div>
 				
 		<div><button type="button" class="btn btn-info" ng-click="type2(date)">Total facturados</button></div>
 
@@ -35,8 +35,34 @@
 
 
 <div class="container" ng-if="reportType == '1'">
-	<div ng-repeat="order in orders">
-		Tipo 1
+	<div ng-repeat="employee in employees" ng-if="orders != null">
+		<h3>{{employee.name}}</h3>
+		<uib-accordion close-others="oneAtATime">
+			<uib-accordion-group is-open="status.open" ng-repeat="order in orders" ng-if="order.employee == employee.name && order.status == 'Cobrada'">
+				<uib-accordion-heading>
+					{{order.stay}} {{order.stayNumber}}
+					<i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
+				</uib-accordion-heading>
+				<ul>
+					<li ng-repeat="product in order.products">
+						<h4 class="product-name">{{product.name}}</h4>
+						<ul>
+							<li class="product product-order product-status-0">
+								<strong>Cantidad:</strong> <span>{{product.order}}</span>
+							</li>
+
+							<li class="product product-total product-status-0">
+								<strong>Total:</strong> <span>$ {{product.total}}</span>
+							</li>
+
+							<li class="product product-note product-status-0" ng-if="product.note != ''">
+								<strong>Nota:</strong> <span>{{product.note}}</span>
+							</li>
+						</ul>
+					</li>
+				</ul>
+
+		</uib-accordion>
 	</div>
 </div>
 
