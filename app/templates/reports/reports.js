@@ -15,7 +15,7 @@ angular.module('myApp.reports', ['ngRoute'])
 	}
 
 
-	$scope.type1 = function(){
+	$scope.type1 = function(date){
 
 
 		if(date == undefined)
@@ -111,7 +111,7 @@ angular.module('myApp.reports', ['ngRoute'])
 					productsWithStock.push(products[product]);
 
 			$rootScope.orders = productsWithStock;
-			console.log(productsWithStock);
+			//console.log(productsWithStock);
 
 		});
 
