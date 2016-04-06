@@ -22,9 +22,7 @@ angular.module('myApp.reports', ['ngRoute'])
 		}
 	}
 
-
 	$scope.type1 = function(date){
-
 		if(date == undefined)
 			date = new Date();
 
@@ -66,9 +64,6 @@ angular.module('myApp.reports', ['ngRoute'])
 				$rootScope.employees = data;
 			});
 	    });
-
-
-
 
 		$rootScope.reportType = '1';
 	}
