@@ -15,17 +15,17 @@ angular.module('myApp.orders', ['ngRoute'])
 
 		API.initOrders().then(function(data){
 			var date = new Date();
-			if((date.getMonth()+1) < 10){
+			if((date.getMonth()) < 10){
 				if(date.getDate() < 10){
-					var today = date.getFullYear()+"-0"+(date.getMonth()+1)+"-0"+date.getDate()
+					var today = date.getFullYear()+"-0"+(date.getMonth())+"-0"+date.getDate();
 				}else{
-					var today = date.getFullYear()+"-0"+(date.getMonth()+1)+"-"+date.getDate()
+					var today = date.getFullYear()+"-0"+(date.getMonth())+"-"+date.getDate();
 				}
 			}else{
 				if(date.getDate() < 10){
-					var today = date.getFullYear()+"-"+(date.getMonth()+1)+"-0"+date.getDate()
+					var today = date.getFullYear()+"-"+(date.getMonth())+"-0"+date.getDate();
 				}else{
-					var today = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate()
+					var today = date.getFullYear()+"-"+(date.getMonth())+"-"+date.getDate();
 				}
 			}
 
@@ -51,17 +51,17 @@ angular.module('myApp.orders', ['ngRoute'])
 
 	API.initOrders().then(function(data){
 		var date = new Date();
-		if((date.getMonth()+1) < 10){
+		if((date.getMonth()) < 10){
 			if(date.getDate() < 10){
-				var today = date.getFullYear()+"-0"+(date.getMonth()+1)+"-0"+date.getDate()
+				var today = date.getFullYear()+"-0"+(date.getMonth())+"-0"+date.getDate();
 			}else{
-				var today = date.getFullYear()+"-0"+(date.getMonth()+1)+"-"+date.getDate()
+				var today = date.getFullYear()+"-0"+(date.getMonth())+"-"+date.getDate();
 			}
 		}else{
 			if(date.getDate() < 10){
-				var today = date.getFullYear()+"-"+(date.getMonth()+1)+"-0"+date.getDate()
+				var today = date.getFullYear()+"-"+(date.getMonth())+"-0"+date.getDate();
 			}else{
-				var today = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate()
+				var today = date.getFullYear()+"-"+(date.getMonth())+"-"+date.getDate();
 			}
 		}
 
@@ -90,10 +90,18 @@ angular.module('myApp.orders', ['ngRoute'])
 
     		API.initOrders().then(function(data){
 				var date = new Date();
-				if(date.getDate() < 10){
-					var today = date.getFullYear()+"-"+(date.getMonth()+1)+"-0"+date.getDate()
+				if((date.getMonth()) < 10){
+					if(date.getDate() < 10){
+						var today = date.getFullYear()+"-0"+(date.getMonth())+"-0"+date.getDate();
+					}else{
+						var today = date.getFullYear()+"-0"+(date.getMonth())+"-"+date.getDate();
+					}
 				}else{
-					var today = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate()
+					if(date.getDate() < 10){
+						var today = date.getFullYear()+"-"+(date.getMonth())+"-0"+date.getDate();
+					}else{
+						var today = date.getFullYear()+"-"+(date.getMonth())+"-"+date.getDate();
+					}
 				}
 
 				//console.log(today);
@@ -124,10 +132,18 @@ angular.module('myApp.orders', ['ngRoute'])
 
     		API.initOrders().then(function(data){
 				var date = new Date();
-				if(date.getDate() < 10){
-					var today = date.getFullYear()+"-"+(date.getMonth()+1)+"-0"+date.getDate()
+				if((date.getMonth()) < 10){
+					if(date.getDate() < 10){
+						var today = date.getFullYear()+"-0"+(date.getMonth())+"-0"+date.getDate();
+					}else{
+						var today = date.getFullYear()+"-0"+(date.getMonth())+"-"+date.getDate();
+					}
 				}else{
-					var today = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate()
+					if(date.getDate() < 10){
+						var today = date.getFullYear()+"-"+(date.getMonth())+"-0"+date.getDate();
+					}else{
+						var today = date.getFullYear()+"-"+(date.getMonth())+"-"+date.getDate();
+					}
 				}
 
 				//console.log(today);
