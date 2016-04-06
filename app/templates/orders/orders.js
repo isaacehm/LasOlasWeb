@@ -51,7 +51,6 @@ angular.module('myApp.orders', ['ngRoute'])
 
 	API.initOrders().then(function(data){
 		var date = new Date();
-		console.log(date);
 		if((date.getMonth()+1) < 10){
 			if(date.getDate() < 10){
 				var today = date.getFullYear()+"-0"+(date.getMonth()+1)+"-0"+date.getDate();
@@ -82,6 +81,9 @@ angular.module('myApp.orders', ['ngRoute'])
 		}else{
 			$rootScope.orders = null;
 		}
+
+		$rootScope.date = date;
+		$rootScope.today = today;
     });
 
     $scope.printOrder = function(order){
