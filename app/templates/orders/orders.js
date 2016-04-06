@@ -71,6 +71,8 @@ angular.module('myApp.orders', ['ngRoute'])
 
 		console.log(today);
 		console.log(orders);
+		alert(today);
+		alert(orders);
 
 		for (order in orders)
 			if( orders[order].date.substring(0,10) == today)
