@@ -33,9 +33,6 @@ angular.module('myApp.orders', ['ngRoute'])
 			var order;
 			var actualOrders = [];
 
-			console.log(today);
-			console.log(orders);
-
 			for (order in orders)
 				if( orders[order].date.substring(0,10) == today)
 					actualOrders.push(orders[order]);
@@ -69,9 +66,6 @@ angular.module('myApp.orders', ['ngRoute'])
 		var order;
 		var actualOrders = [];
 
-		//console.log(today);
-		//console.log(orders);
-
 		for (order in orders)
 			if( orders[order].date.substring(0,10) == today)
 				actualOrders.push(orders[order]);
@@ -87,7 +81,6 @@ angular.module('myApp.orders', ['ngRoute'])
     });
 
     $scope.printOrder = function(order){
-    	console.log(order.status);
 
     	API.updateOrder(order, 'Procesada').then(function(data){
 
@@ -107,14 +100,10 @@ angular.module('myApp.orders', ['ngRoute'])
 					}
 				}
 
-				//console.log(today);
-
 				var orders = API.getOrders();
 				var order;
 				var actualOrders = [];
 				for (order in orders){
-					//console.log('fecha orden: '+orders[order].date.substring(0,10));
-					//console.log('fecha servidor: '+today)
 					if( orders[order].date.substring(0,10) == today)
 						actualOrders.push(orders[order]);
 				}
@@ -129,7 +118,6 @@ angular.module('myApp.orders', ['ngRoute'])
 	}
 
 	$scope.chargeOrder = function(order){
-    	console.log(order.status);
 
     	API.updateOrder(order, 'Cobrada').then(function(data){
 
@@ -149,14 +137,10 @@ angular.module('myApp.orders', ['ngRoute'])
 					}
 				}
 
-				//console.log(today);
-
 				var orders = API.getOrders();
 				var order;
 				var actualOrders = [];
 				for (order in orders){
-					//console.log('fecha orden: '+orders[order].date.substring(0,10));
-					//console.log('fecha servidor: '+today)
 					if( orders[order].date.substring(0,10) == today)
 						actualOrders.push(orders[order]);
 				}
