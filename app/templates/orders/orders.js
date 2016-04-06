@@ -52,7 +52,9 @@ angular.module('myApp.orders', ['ngRoute'])
 			}else{
 				var today = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate()
 			}
-		}		
+		}
+
+		console.log(today);
 
 		var orders = API.getOrders();
 		var order;
