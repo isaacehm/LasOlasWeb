@@ -32,6 +32,10 @@ angular.module('myApp.orders', ['ngRoute'])
 			var orders = API.getOrders();
 			var order;
 			var actualOrders = [];
+
+			console.log(today);
+			console.log(orders);
+
 			for (order in orders)
 				if( orders[order].date.substring(0,10) == today)
 					actualOrders.push(orders[order]);
@@ -64,6 +68,10 @@ angular.module('myApp.orders', ['ngRoute'])
 		var orders = API.getOrders();
 		var order;
 		var actualOrders = [];
+
+		console.log(today);
+		console.log(orders);
+
 		for (order in orders)
 			if( orders[order].date.substring(0,10) == today)
 				actualOrders.push(orders[order]);
