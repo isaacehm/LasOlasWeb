@@ -21,10 +21,18 @@ angular.module('myApp.reports', ['ngRoute'])
 		if(date == undefined)
 			date = new Date();
 
-		if(date.getDate() < 10){
-			var selectedDate = date.getFullYear()+"-"+(date.getMonth()+1)+"-0"+date.getDate()
+		if((date.getMonth()+1) < 10){
+			if(date.getDate() < 10){
+				var selectedDate = date.getFullYear()+"-0"+(date.getMonth()+1)+"-0"+date.getDate();
+			}else{
+				var selectedDate = date.getFullYear()+"-0"+(date.getMonth()+1)+"-"+date.getDate();
+			}
 		}else{
-			var selectedDate = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate()
+			if(date.getDate() < 10){
+				var selectedDate = date.getFullYear()+"-"+(date.getMonth()+1)+"-0"+date.getDate();
+			}else{
+				var selectedDate = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate();
+			}
 		}
 		
 		API.initOrders().then(function(data){
@@ -62,10 +70,18 @@ angular.module('myApp.reports', ['ngRoute'])
 		if(date == undefined)
 			date = new Date();
 
-		if(date.getDate() < 10){
-			var selectedDate = date.getFullYear()+"-"+(date.getMonth()+1)+"-0"+date.getDate()
+		if((date.getMonth()+1) < 10){
+			if(date.getDate() < 10){
+				var selectedDate = date.getFullYear()+"-0"+(date.getMonth()+1)+"-0"+date.getDate();
+			}else{
+				var selectedDate = date.getFullYear()+"-0"+(date.getMonth()+1)+"-"+date.getDate();
+			}
 		}else{
-			var selectedDate = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate()
+			if(date.getDate() < 10){
+				var selectedDate = date.getFullYear()+"-"+(date.getMonth()+1)+"-0"+date.getDate();
+			}else{
+				var selectedDate = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate();
+			}
 		}
 		
 		API.initOrders().then(function(data){
@@ -111,15 +127,10 @@ angular.module('myApp.reports', ['ngRoute'])
 					productsWithStock.push(products[product]);
 
 			$rootScope.orders = productsWithStock;
-			//console.log(productsWithStock);
-
 		});
 
 		$rootScope.reportType = '4';
 	}
-
-
-
 
 	API.initOrders().then(function(data){
 		$rootScope.orders = API.getOrders();
