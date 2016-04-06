@@ -8,15 +8,22 @@ angular.module('myApp.reports', ['ngRoute'])
 		$location.path('/login');
 
 	var date = new Date();
-	if(date.getDate() < 10){
-		$rootScope.today = date.getFullYear()+"-"+(date.getMonth()+1)+"-0"+date.getDate()
+	if((date.getMonth()+1) < 10){
+		if(date.getDate() < 10){
+			$rootScope.today = date.getFullYear()+"-0"+(date.getMonth()+1)+"-0"+date.getDate();
+		}else{
+			$rootScope.today = date.getFullYear()+"-0"+(date.getMonth()+1)+"-"+date.getDate();
+		}
 	}else{
-		$rootScope.today = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate()
+		if(date.getDate() < 10){
+			$rootScope.today = date.getFullYear()+"-"+(date.getMonth()+1)+"-0"+date.getDate();
+		}else{
+			$rootScope.today = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate();
+		}
 	}
 
 
 	$scope.type1 = function(date){
-
 
 		if(date == undefined)
 			date = new Date();
