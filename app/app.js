@@ -640,21 +640,6 @@ config(['$routeProvider', function($routeProvider) {
             return socket;
         }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	}
 
 }]);

@@ -30,16 +30,19 @@
 }
 
 #menu:hover .submenu{
-  display: inherit;
+  visibility: visible;
+  opacity: 1;
 }
 
 .submenu{
   position: absolute;
-  display: none;
+  visibility: hidden;
+  opacity: 0;
   width: 100%;
   background-color: #075fbb;
   border-bottom-left-radius: 2px;
-  border-bottom-right-radius: 2px;
+  border-bottom-right-radius: 2px;  
+  transition: visibility 0s, opacity 0.5s linear;
 }
 
 .submenu li a{
