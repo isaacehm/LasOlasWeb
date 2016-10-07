@@ -111,7 +111,7 @@ angular.module('myApp.orders', ['ngRoute'])
   						producsByCategory.push(newEntry);
     			});
     			console.log(producsByCategory);
-    			var template = '<table width="300px"><tr><th>Nombre</th><th>Cantidad</th><th>Nota</th><th>Importe</th><th>Total</th></tr>';
+    			var template = '<table width="100%"><tr><th>Nombre</th><th>Cantidad</th><th>Nota</th><th>Importe</th><th>Total</th></tr>';
     			producsByCategory.forEach(function(entry){
     				template += '<tr><td colspan="5" style="text-align:left;border-bottom:1px solid black;"><b>'+entry.category+'</b></td></tr>';
     				entry.products.forEach(function(product){
