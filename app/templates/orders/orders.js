@@ -84,9 +84,8 @@ angular.module('myApp.orders', ['ngRoute'])
 
     	console.log(order);
     	//$('#print-area').innerHTML = '<div>order</div>';
-    	$('#print-area').html('<div>order</div>');
-    	//window.print();
-
+    	//$('#print-area').html('<div>order</div>');
+    	var template = '<div>';
     	var producsByCategory = [];
 
     	API.initCategories().then(function(data){
@@ -112,6 +111,17 @@ angular.module('myApp.orders', ['ngRoute'])
   						producsByCategory.push(newEntry);
     			});
     			console.log(producsByCategory);
+    			producsByCategory.forEach(function(entry){
+    				template += '<b>'+entry.category+'</b><br>';
+    				entry.products.forEach(function(product){
+    					template += '<p>'+product.name+' '+product.order+' x '+product.price+' = '+product.total+'</p><br>';
+    					if(product.note != "")
+    						template += '<p>- '+product.note+'</p><br>';
+    				});
+    			});
+    			template += '</div>';
+    			$('#print-area').html(template);
+    			window.print();
     		});
     	});
 
