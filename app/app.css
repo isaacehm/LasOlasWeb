@@ -244,7 +244,7 @@ table tr th{
 /**** CSS PRINT ****/
 #print-area{ display: none; }
 @page {
-  size: A6;
+  size: A5;
   /*margin: 0;*/
 }
 @media print {
