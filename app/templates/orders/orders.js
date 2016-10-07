@@ -111,11 +111,11 @@ angular.module('myApp.orders', ['ngRoute'])
   						producsByCategory.push(newEntry);
     			});
     			console.log(producsByCategory);
-    			var template = '';
+    			var template = '<table width="300px"><tr><th>Nombre</th><th>Cantidad</th><th>Nota</th><th>Importe</th><th>Total</th></tr>';
     			producsByCategory.forEach(function(entry){
     				//template += '<b>'+entry.category+'</b><br>';
-    				template += '<table width="400px"><tr><th>Nombre</th><th>Cantidad</th><th>Nota</th><th>Importe</th><th>Total</th></tr>';
-    				template += '<caption>'+entry.category+'</caption>';
+    				//template += '<caption>'+entry.category+'</caption>';
+    				template += '<tr><td colspan="5">'+entry.category+'</td></tr>';
     				entry.products.forEach(function(product){
     					template += '<tr>';
     					template += '<td>'+product.name+'</td>';
@@ -128,9 +128,10 @@ angular.module('myApp.orders', ['ngRoute'])
     					//if(product.note != "")
     						//template += '<caption>'+product.note+'</caption>'
     						//template += '<p>      "'+product.note+'"</p>';
-    				});
-    				template += '</table>';
-    			});    			
+    				});    				
+    			});
+    			template += '</table>';
+    			template += '<h4>TOTAL: '+order.total+'</h4>';
     			$('#print-area').html(template);
     			window.print();
     		});
