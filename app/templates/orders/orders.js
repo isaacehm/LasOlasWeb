@@ -115,7 +115,7 @@ angular.module('myApp.orders', ['ngRoute'])
     			producsByCategory.forEach(function(entry){
     				//template += '<b>'+entry.category+'</b><br>';
     				//template += '<caption>'+entry.category+'</caption>';
-    				template += '<tr><td colspan="5">'+entry.category+'</td></tr>';
+    				template += '<tr><td colspan="5" style="text-align:left;border-bottom:1px solid black;"><b>'+entry.category+'</b></td></tr>';
     				entry.products.forEach(function(product){
     					template += '<tr>';
     					template += '<td>'+product.name+'</td>';
@@ -131,7 +131,7 @@ angular.module('myApp.orders', ['ngRoute'])
     				});    				
     			});
     			template += '</table>';
-    			template += '<h4>TOTAL: '+order.total+'</h4>';
+    			template += '<h5>TOTAL: $'+order.total+'</h5>';
     			$('#print-area').html(template);
     			window.print();
     		});
