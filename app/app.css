@@ -242,11 +242,12 @@ table tr th{
 }
 
 /**** CSS PRINT ****/
+#print-area{ display: none; }
 @media print {
    .container, nav {
        display: none;
     }
-    .print-area {
+    #print-area {
        display: block;
     }
 }

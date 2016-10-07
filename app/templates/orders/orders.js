@@ -82,7 +82,10 @@ angular.module('myApp.orders', ['ngRoute'])
 
     $scope.printOrder = function(order){
 
-    	API.updateOrder(order, 'Procesada').then(function(data){
+    	console.log(order);
+    	console.log($('#print-area').innerHTML);
+
+    	/*API.updateOrder(order, 'Procesada').then(function(data){
 
     		API.initOrders().then(function(data){
 				var date = new Date();
@@ -114,7 +117,7 @@ angular.module('myApp.orders', ['ngRoute'])
 					$rootScope.orders = null;
 				}
 		    });
-    	});
+    	});*/
 	}
 
 	$scope.chargeOrder = function(order){
