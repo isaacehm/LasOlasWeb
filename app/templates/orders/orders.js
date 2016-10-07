@@ -126,7 +126,6 @@ angular.module('myApp.orders', ['ngRoute'])
     			});
     			template += '<tr><td colspan="5" style="text-align:right;border-top:1px solid black;"><b>TOTAL: $'+order.total+'</b></td></tr>';
     			template += '</table>';
-    			//template += '<h5>TOTAL: $'+order.total+'</h5>';
     			$('#print-area').html(template);
     			window.print();
     		});
@@ -137,7 +136,7 @@ angular.module('myApp.orders', ['ngRoute'])
 
     	$scope.printOrder(order);
 
-    	/*API.updateOrder(order, 'Procesada').then(function(data){
+    	API.updateOrder(order, 'Procesada').then(function(data){
 
     		API.initOrders().then(function(data){
 				var date = new Date();
@@ -169,7 +168,7 @@ angular.module('myApp.orders', ['ngRoute'])
 					$rootScope.orders = null;
 				}
 		    });
-    	});*/
+    	});
 	}
 
 	$scope.chargeOrder = function(order){
