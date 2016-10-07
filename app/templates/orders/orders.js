@@ -124,8 +124,9 @@ angular.module('myApp.orders', ['ngRoute'])
     					template += '</tr>';    					
     				});    				
     			});
+    			template += '<tr><td colspan="5" style="text-align:right;border-top:1px solid black;"><b>TOTAL: $'+order.total+'</b></td></tr>';
     			template += '</table>';
-    			template += '<h5>TOTAL: $'+order.total+'</h5>';
+    			//template += '<h5>TOTAL: $'+order.total+'</h5>';
     			$('#print-area').html(template);
     			window.print();
     		});
