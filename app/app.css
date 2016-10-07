@@ -247,7 +247,5 @@ table tr th{
    .container, nav {
        display: none;
     }
-    #print-area {
-       display: block;
-    }
+    #print-area { display: block; }
 }

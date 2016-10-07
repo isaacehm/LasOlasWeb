@@ -83,7 +83,8 @@ angular.module('myApp.orders', ['ngRoute'])
     $scope.printOrder = function(order){
 
     	console.log(order);
-    	$('#print-area').innerHTML = '<div>order</div>';
+    	//$('#print-area').innerHTML = '<div>order</div>';
+    	$('#print-area').html('<div>order</div>');
     	window.print();
 
     	/*API.updateOrder(order, 'Procesada').then(function(data){
