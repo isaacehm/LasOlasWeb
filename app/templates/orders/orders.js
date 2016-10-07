@@ -108,7 +108,7 @@ angular.module('myApp.orders', ['ngRoute'])
     							'total': order.products[i].total
     						});
     					}
-  					if(newEntry.length > 0)
+  					if(newEntry.products.length > 0)
   						producsByCategory.push(newEntry);
     			});
     			console.log(producsByCategory);
