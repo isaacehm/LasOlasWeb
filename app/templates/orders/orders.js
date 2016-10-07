@@ -85,7 +85,14 @@ angular.module('myApp.orders', ['ngRoute'])
     	console.log(order);
     	//$('#print-area').innerHTML = '<div>order</div>';
     	$('#print-area').html('<div>order</div>');
-    	window.print();
+    	//window.print();
+
+    	API.initCategories().then(function(data){
+    		console.log(data);
+    		API.initSubcategories().then(function(data){
+    			console.log(data);
+    		});
+    	});
 
     	/*API.updateOrder(order, 'Procesada').then(function(data){
 
