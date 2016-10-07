@@ -87,10 +87,30 @@ angular.module('myApp.orders', ['ngRoute'])
     	$('#print-area').html('<div>order</div>');
     	//window.print();
 
+    	var producsByCategory = [];
+
     	API.initCategories().then(function(data){
-    		console.log(data);
+    		var categories = data;
     		API.initSubcategories().then(function(data){
-    			console.log(data);
+    			var subcategories = data;
+    			categories.forEach(function(category){
+    				var newEntry = {
+    					'category':category.name,
+    					'products': []
+    				};
+    				for(var i=0; i<order.products.length; i++)
+    					if(category._id == order.products[i].categoryId){
+    						newEntry.products.push({
+    							'name': order.products[i].name,
+    							'note': order.products[i].note,
+    							'order': order.products[i].order,
+    							'price': order.products[i].price,
+    							'total': order.products[i].total
+    						});
+    					}
+  					producsByCategory.push(newEntry);
+    			});
+    			console.log(producsByCategory);
     		});
     	});
 
