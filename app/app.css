@@ -248,4 +248,8 @@ table tr th{
        display: none;
     }
     #print-area { display: block; }
+    html, body{
+      width: 400px;
+      height: 600px;
+    }
 }
