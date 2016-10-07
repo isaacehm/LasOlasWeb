@@ -78,13 +78,13 @@ angular.module('myApp.orders', ['ngRoute'])
 
 		$rootScope.date = date;
 		$rootScope.today = today;
-    });
+    });		
+
+		$scope.reprintOrder = function(order){
+			$scope.printOrder(order);
+		}
 
     $scope.printOrder = function(order){
-
-    	console.log(order);
-    	//$('#print-area').innerHTML = '<div>order</div>';
-    	//$('#print-area').html('<div>order</div>');   	
 
     	var producsByCategory = [];
 
@@ -113,8 +113,6 @@ angular.module('myApp.orders', ['ngRoute'])
     			console.log(producsByCategory);
     			var template = '<table width="300px"><tr><th>Nombre</th><th>Cantidad</th><th>Nota</th><th>Importe</th><th>Total</th></tr>';
     			producsByCategory.forEach(function(entry){
-    				//template += '<b>'+entry.category+'</b><br>';
-    				//template += '<caption>'+entry.category+'</caption>';
     				template += '<tr><td colspan="5" style="text-align:left;border-bottom:1px solid black;"><b>'+entry.category+'</b></td></tr>';
     				entry.products.forEach(function(product){
     					template += '<tr>';
@@ -123,11 +121,7 @@ angular.module('myApp.orders', ['ngRoute'])
     					template += '<td>'+product.note+'</td>';
     					template += '<td>$'+product.price+'</td>';
     					template += '<td>$'+product.total+'</td>';
-    					template += '</tr>';
-    					//template += '<p>'+product.name+' '+product.order+' x $'+product.price+' = $'+product.total+'</p>';
-    					//if(product.note != "")
-    						//template += '<caption>'+product.note+'</caption>'
-    						//template += '<p>      "'+product.note+'"</p>';
+    					template += '</tr>';    					
     				});    				
     			});
     			template += '</table>';
@@ -136,6 +130,11 @@ angular.module('myApp.orders', ['ngRoute'])
     			window.print();
     		});
     	});
+    }
+
+    $scope.processOrder = function(order){
+
+    	$scope.printOrder(order);
 
     	/*API.updateOrder(order, 'Procesada').then(function(data){
 

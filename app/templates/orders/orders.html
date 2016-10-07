@@ -29,7 +29,7 @@
 			</uib-accordion-heading>
 
 			<div class="right">
-				<button class="btn btn-primary" ng-click="printOrder(order)">Procesar</button>
+				<button class="btn btn-primary" ng-click="processOrder(order)">Procesar</button>
 				<button class="btn btn-danger" ng-click="cancelOrder(order)">Anular</button>
 			</div>
 
@@ -67,6 +67,7 @@
 
 			<div class="right">
 				<button class="btn btn-primary" ng-click="chargeOrder(order)">Cobrar</button>
+				<button class="btn btn-warning" ng-click="reprintOrder(order)">Reimprimir</button>
 				<button class="btn btn-danger" ng-click="cancelOrder(order)">Anular</button>
 			</div>
 
@@ -104,6 +105,10 @@
 				{{order.stay}} {{order.stayNumber}}
 				<i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
 			</uib-accordion-heading>
+
+			<div class="right">
+				<button class="btn btn-warning" ng-click="reprintOrder(order)">Reimprimir</button>
+			</div>
 
 			<ul>
 				<li ng-repeat="product in order.products">
