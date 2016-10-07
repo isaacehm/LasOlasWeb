@@ -84,8 +84,7 @@ angular.module('myApp.orders', ['ngRoute'])
 
     	console.log(order);
     	//$('#print-area').innerHTML = '<div>order</div>';
-    	//$('#print-area').html('<div>order</div>');
-    	var template = '<table><tr><th>Nombre</th><th>Cantidad</th><th>Importe</th><th>Total</th></tr>';
+    	//$('#print-area').html('<div>order</div>');   	
 
     	var producsByCategory = [];
 
@@ -114,21 +113,23 @@ angular.module('myApp.orders', ['ngRoute'])
     			console.log(producsByCategory);
     			producsByCategory.forEach(function(entry){
     				//template += '<b>'+entry.category+'</b><br>';
+    				var template = '<table width="400px"><tr><th>Nombre</th><th>Cantidad</th><th>Nota</th><th>Importe</th><th>Total</th></tr>';
     				template += '<caption>'+entry.category+'</caption>';
     				entry.products.forEach(function(product){
     					template += '<tr>';
     					template += '<td>'+product.name+'</td>';
     					template += '<td>'+product.order+'</td>';
-    					template += '<td>'+product.price+'</td>';
-    					template += '<td>'+product.total+'</td>';
+    					template += '<td>'+product.note+'</td>';
+    					template += '<td>$'+product.price+'</td>';
+    					template += '<td>$'+product.total+'</td>';
     					template += '</tr>';
     					//template += '<p>'+product.name+' '+product.order+' x $'+product.price+' = $'+product.total+'</p>';
-    					if(product.note != "")
-    						template += '<caption>'+product.note+'</caption>'
+    					//if(product.note != "")
+    						//template += '<caption>'+product.note+'</caption>'
     						//template += '<p>      "'+product.note+'"</p>';
     				});
-    			});
-    			template += '</table>';
+    				template += '</table>';
+    			});    			
     			$('#print-area').html(template);
     			window.print();
     		});
