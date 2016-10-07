@@ -240,3 +240,13 @@ table tr th{
 #stock-container{
   margin-top: 20px !important;
 }
+
+/**** CSS PRINT ****/
+@media print {
+   .container, nav {
+       display: none;
+    }
+    .print-area {
+       display: block;
+    }
+}

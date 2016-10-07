@@ -122,6 +122,41 @@ angular.module('myApp.orders', ['ngRoute'])
     	API.updateOrder(order, 'Cobrada').then(function(data){
 
     		API.initOrders().then(function(data){
+					var date = new Date();
+					if((date.getMonth()+1) < 10){
+						if(date.getDate() < 10){
+							var today = date.getFullYear()+"-0"+(date.getMonth()+1)+"-0"+date.getDate();
+						}else{
+							var today = date.getFullYear()+"-0"+(date.getMonth()+1)+"-"+date.getDate();
+						}
+					}else{
+						if(date.getDate() < 10){
+							var today = date.getFullYear()+"-"+(date.getMonth()+1)+"-0"+date.getDate();
+						}else{
+							var today = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate();
+						}
+					}
+
+					var orders = API.getOrders();
+					var order;
+					var actualOrders = [];
+					for (order in orders){
+						if( orders[order].date.substring(0,10) == today)
+							actualOrders.push(orders[order]);
+					}
+
+					if(actualOrders.length > 0){
+						$rootScope.orders = actualOrders;
+					}else{
+						$rootScope.orders = null;
+					}
+		    });
+    	});
+	}
+
+	$scope.cancelOrder = function(order){
+		API.cancelOrder(order).then(function(data){
+			API.initOrders().then(function(data){
 				var date = new Date();
 				if((date.getMonth()+1) < 10){
 					if(date.getDate() < 10){
@@ -150,8 +185,8 @@ angular.module('myApp.orders', ['ngRoute'])
 				}else{
 					$rootScope.orders = null;
 				}
-		    });
-    	});
+	    });
+		});
 	}
 
 }]);

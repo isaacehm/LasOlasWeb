@@ -30,6 +30,7 @@
 
 			<div class="right">
 				<button class="btn btn-primary" ng-click="printOrder(order)">Procesar</button>
+				<button class="btn btn-primary" ng-click="cancelOrder(order)">Anular</button>
 			</div>
 
 			<ul>
@@ -66,6 +67,7 @@
 
 			<div class="right">
 				<button class="btn btn-primary" ng-click="chargeOrder(order)">Cobrar</button>
+				<button class="btn btn-primary" ng-click="cancelOrder(order)">Anular</button>
 			</div>
 
 			<ul>
@@ -127,4 +129,8 @@
 
 		</uib-accordion-group>
 	</uib-accordion>	
+</div>
+
+<div id="print-area">
+	this is an order
 </div>

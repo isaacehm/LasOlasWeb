@@ -637,6 +637,31 @@ config(['$routeProvider', function($routeProvider) {
             
         },
 
+        cancelOrder: function(order){
+            var req = {
+                    method: 'DELETE',
+                    url: myUrl+'/order/'+order._id,
+                    headers: { 
+                      'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    transformRequest: function(obj) {
+                        var str = [];
+                        for(var p in obj)
+                            str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+                        return str.join("&");
+                    }
+                };
+
+            return $http(req).then(function(data) {
+                return true;
+              
+            }, function(data) {
+                console.log(data.status+": "+data.data.msg);
+                return false;
+            });
+
+        },
+
         getSocket: function(){
             return socket;
         }
