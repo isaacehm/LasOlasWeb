@@ -66,6 +66,9 @@ angular.module('myApp.orders', ['ngRoute'])
 		var order;
 		var actualOrders = [];
 
+		console.log(today);
+		console.log(orders[orders.length-1]);
+
 		for (order in orders)
 			if( orders[order].date.substring(0,10) == today)
 				actualOrders.push(orders[order]);
@@ -78,7 +81,7 @@ angular.module('myApp.orders', ['ngRoute'])
 
 		$rootScope.date = date;
 		$rootScope.today = today;
-    });		
+  });		
 
 		$scope.reprintOrder = function(order){
 			$scope.printOrder(order);
