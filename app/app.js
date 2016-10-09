@@ -155,6 +155,8 @@ config(['$routeProvider', function($routeProvider) {
 
         addUser: function(user){
 
+            console.log(user);
+
             var req = {
                     method: 'POST',
                     url: myUrl+'/users',
@@ -253,9 +255,6 @@ config(['$routeProvider', function($routeProvider) {
         },
 
         addStay: function(stay){
-
-            console.log(stay);
-
             var req = {
                     method: 'POST',
                     url: myUrl+'/stays',
