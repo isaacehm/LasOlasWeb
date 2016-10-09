@@ -6,6 +6,7 @@ var myUrl = 'http://oneidea.com.ar/balneario/api';
 angular.module('myApp', [
   'ngRoute',
   'ngCookies',
+  'toastr',
   'angular-confirm',
   'ui.bootstrap',
   'myApp.login',

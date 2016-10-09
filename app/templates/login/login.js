@@ -2,7 +2,9 @@
  
 angular.module('myApp.login', ['ngRoute'])
  
-.controller('LoginCtrl', ['$scope', '$rootScope', '$location', 'API', '$cookies', '$confirm', function($scope, $rootScope, $location, API, $cookies, $confirm) {
+.controller('LoginCtrl', ['$scope', '$rootScope', '$location', 'API', '$cookies', '$confirm', 'toastr', function($scope, $rootScope, $location, API, $cookies, $confirm, toastr) {
+
+	toastr.info('Por favor, identifíquese para ingresas al Panel administrativo.', '¡Bienvenido!');
 
 	if ($cookies.get('session') == undefined){
 		$location.path('/login');
@@ -18,12 +20,15 @@ angular.module('myApp.login', ['ngRoute'])
 		//console.log(user);
 		if (user)
 			API.login(user.username, user.password).then(function(data){
+				console.log(data);
 				if(data.type == 'Administrator'){
 					var expireDate = new Date();
   					expireDate.setDate(expireDate.getDate() + 1);
   					
 					$cookies.put('session', data._id, {'expires': expireDate});
 					$location.path('/orders');
+				}else{
+					toastr.warning('Disculpe, usted no está autorizado para acceder al Panel administrativo.', 'Acceso restringido.');
 				}
 			});		
 	}
