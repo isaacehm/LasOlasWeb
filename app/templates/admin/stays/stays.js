@@ -11,7 +11,7 @@ angular.module('myApp.admin.stays', ['ngRoute'])
 		$rootScope.stays = data;
 	});
 
-	$scope.delete = function(stayId, name){ 
+	$scope.deleteStay = function(stayId, name){ 
 		
 		$confirm({text: '¿Desea eliminar la estancia, '+name+'?', title: 'Eliminar estancia', ok: 'Si', cancel: 'No'})
 			.then(function() {
@@ -25,11 +25,11 @@ angular.module('myApp.admin.stays', ['ngRoute'])
 
 	}
 
-	$scope.update = function(stay){
+	$scope.updateStay = function(stay){
 		$confirm({stay: stay}, { templateUrl: 'templates/admin/stays/update.html' });
 	}
 
-	$scope.createStay = function(stay){
+	$scope.createStay = function(){
 		$confirm({stay: stay}, { templateUrl: 'templates/admin/stays/create.html' });
 	}
 

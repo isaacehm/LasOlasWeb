@@ -20,8 +20,8 @@
 	</div>
 	<div class="user-info" ng-repeat="stay in stays">
 		<span class="user-name"><p>{{stay.name}}</p></span>
-		<span class="glyphicon glyphicon-remove options delete" title="Eliminar" ng-click="delete(stay._id, stay.name)"></span>
-		<span class="glyphicon glyphicon-pencil options modify" title="Modificar" ng-click="update(stay)"></span>
+		<span class="glyphicon glyphicon-remove options delete" title="Eliminar" ng-click="deleteStay(stay._id, stay.name)"></span>
+		<span class="glyphicon glyphicon-pencil options modify" title="Modificar" ng-click="updateStay(stay)"></span>
 	</div>
 </div>
 
