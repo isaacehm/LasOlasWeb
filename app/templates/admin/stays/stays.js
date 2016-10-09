@@ -30,7 +30,7 @@ angular.module('myApp.admin.stays', ['ngRoute'])
 	}
 
 	$scope.createStay = function(){
-		$confirm({stay: stay}, { templateUrl: 'templates/admin/stays/create.html' });
+		$confirm({}, { templateUrl: 'templates/admin/stays/create.html' });
 	}
 
 }]) ;

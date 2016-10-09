@@ -29,8 +29,8 @@ angular.module('myApp.admin.users', ['ngRoute'])
 		$confirm({user: user}, { templateUrl: 'templates/admin/users/update.html' });
 	}
 
-	$scope.create = function(user){
-		$confirm({user: user}, { templateUrl: 'templates/admin/users/create.html' });
+	$scope.create = function(){
+		$confirm({}, { templateUrl: 'templates/admin/users/create.html' });
 	}
 
 }]) ;
