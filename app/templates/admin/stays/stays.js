@@ -36,6 +36,7 @@ angular.module('myApp.admin.stays', ['ngRoute'])
 	$scope.addStay = function(stay){		
 		API.addStay(stay).then(function(data){
 			console.log(data);
+			$location.path('/admin');
 		});
 	}
 
