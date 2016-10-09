@@ -33,6 +33,10 @@ angular.module('myApp.admin.users', ['ngRoute'])
 		$confirm({}, { templateUrl: 'templates/admin/users/create.html' });
 	}
 
+	$scope.addStay = function(stay){
+		console.log(stay);
+	}
+
 }]) ;
 
 
