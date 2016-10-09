@@ -4,7 +4,7 @@ angular.module('myApp.login', ['ngRoute'])
  
 .controller('LoginCtrl', ['$scope', '$rootScope', '$location', 'API', '$cookies', '$confirm', 'toastr', function($scope, $rootScope, $location, API, $cookies, $confirm, toastr) {
 
-	toastr.info('Por favor, identifíquese para ingresas al Panel administrativo.', '¡Bienvenido!');
+	toastr.info('Por favor, identifíquese para ingresar al Panel administrativo.', '¡Bienvenido!');
 
 	if ($cookies.get('session') == undefined){
 		$location.path('/login');
@@ -17,11 +17,11 @@ angular.module('myApp.login', ['ngRoute'])
 	});
 
 	$scope.login = function(user){
-		//console.log(user);
 		if (user)
 			API.login(user.username, user.password).then(function(data){
-				console.log(data);
-				if(data.type == 'Administrator'){
+				if(!data){
+					toastr.warning('Disculpe, los datos son incorrectos. Intente nuevamente.', 'Datos incorrectos.');
+				}else if(data.type == 'Administrator'){
 					var expireDate = new Date();
   					expireDate.setDate(expireDate.getDate() + 1);
   					
