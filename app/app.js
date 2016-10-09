@@ -254,6 +254,8 @@ config(['$routeProvider', function($routeProvider) {
 
         addStay: function(stay){
 
+            console.log(stay);
+
             var req = {
                     method: 'POST',
                     url: myUrl+'/stays',
