@@ -33,12 +33,6 @@ angular.module('myApp.admin.stays', ['ngRoute'])
 		$confirm({}, { templateUrl: 'templates/admin/stays/create.html' });
 	}
 
-	$scope.addStay = function(stay){		
-		API.addStay(stay).then(function(data){			
-			$location.path('/admin');
-		});
-	}
-
 }]) ;
 
 

@@ -35,7 +35,7 @@ angular.module('angular-confirm', ['ui.bootstrap.modal'])
     };
 
     $scope.addStay = function(stay){
-      API.addUser(stay);
+      API.addStay(stay);
       $uibModalInstance.close();
       $location.path('/admin');
     };
