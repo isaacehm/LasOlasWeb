@@ -34,7 +34,7 @@ angular.module('myApp.admin.stays', ['ngRoute'])
 	}
 
 	$scope.addStay = function(stay){		
-		API.addStay().then(function(data){
+		API.addStay(stay).then(function(data){
 			console.log(data);
 		});
 	}
