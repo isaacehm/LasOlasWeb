@@ -8,10 +8,10 @@ angular.module('myApp.orders', ['ngRoute'])
 		$location.path('/login');
 
 	var socket = API.getSocket();
-
+	console.log(socket);
 	setTimeout(function(){
 		console.log(socket);
-	}, 3000);
+	}, 10000);
 
 	socket.on('new order', function(order){
 		console.log('new order');
