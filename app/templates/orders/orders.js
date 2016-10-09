@@ -11,6 +11,8 @@ angular.module('myApp.orders', ['ngRoute'])
 
 	socket.on('new order', function(order){
 
+		console.log('new order received');
+
 		$confirm({order: order}, { templateUrl: 'templates/orders/new.html' });
 
 		API.initOrders().then(function(data){
