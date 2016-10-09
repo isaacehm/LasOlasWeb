@@ -20,7 +20,7 @@ angular.module('myApp.login', ['ngRoute'])
 		if (user)
 			API.login(user.username, user.password).then(function(data){
 				if(!data){
-					toastr.warning('Disculpe, los datos son incorrectos. Intente nuevamente.', 'Datos incorrectos.');
+					toastr.error('Disculpe, los datos son incorrectos. Intente nuevamente.', 'Datos incorrectos.');
 				}else if(data.type == 'Administrator'){
 					var expireDate = new Date();
   					expireDate.setDate(expireDate.getDate() + 1);
