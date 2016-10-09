@@ -9,8 +9,7 @@ angular.module('myApp.orders', ['ngRoute'])
 
 	var socket = API.getSocket();
 
-	console.log(socket);
-	socket.on('newOrder', function(order){
+	socket.on('new order', function(order){
 		$confirm({order: order}, { templateUrl: 'templates/orders/new.html' });
 
 		API.initOrders().then(function(data){
