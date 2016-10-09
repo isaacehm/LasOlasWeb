@@ -8,6 +8,7 @@ angular.module('myApp.orders', ['ngRoute'])
 		$location.path('/login');
 
 	var socket = API.getSocket();
+	console.log(socket);
 
 	socket.on('new order', function(order){
 		$confirm({order: order}, { templateUrl: 'templates/orders/new.html' });
