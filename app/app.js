@@ -66,8 +66,8 @@ config(['$routeProvider', function($routeProvider) {
 
 .factory('API', ['$http', function($http) {
 
-    //var socket = io('http://localhost:3000'); FOR DEVELOPMENT ONLY
-    var socket = io('http://oneidea.com.ar:3000'); // FOR PRODUCTION
+    var socket = io('http://localhost:3000'); //FOR DEVELOPMENT ONLY
+    //var socket = io('http://oneidea.com.ar:3000'); // FOR PRODUCTION
 	var employee = null;
 	var users = null;
     var categories = null;
