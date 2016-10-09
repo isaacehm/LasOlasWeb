@@ -14,7 +14,7 @@ angular.module('myApp', [
   'myApp.reports',
   'myApp.admin',
   'myApp.admin.menu',
-  'myApp.admin.stays',
+  //'myApp.admin.stays',
   'myApp.admin.users'
 ]).
 config(['$routeProvider', function($routeProvider) {
