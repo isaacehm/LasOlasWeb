@@ -16,12 +16,12 @@
 
 <div class="container">
 	<div class="right">
-		<button class="btn btn-primary" ng-click="create()">Añadir usuario</button>
+		<button class="btn btn-primary" ng-click="createUser()">Añadir usuario</button>
 	</div>
 	<div class="user-info" ng-repeat="user in users">
 		<span class="user-name"><p>{{user.name}}</p></span>
-		<span class="glyphicon glyphicon-remove options delete" title="Eliminar" ng-click="delete(user._id, user.name)"></span>
-		<span class="glyphicon glyphicon-pencil options modify" title="Modificar" ng-click="update(user)"></span>
+		<span class="glyphicon glyphicon-remove options delete" title="Eliminar" ng-click="deleteUser(user._id, user.name)"></span>
+		<span class="glyphicon glyphicon-pencil options modify" title="Modificar" ng-click="updateUser(user)"></span>
 	</div>
 </div>
 

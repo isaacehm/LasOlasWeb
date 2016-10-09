@@ -11,7 +11,7 @@ angular.module('myApp.admin.users', ['ngRoute'])
 		$rootScope.users = data;
 	});
 
-	$scope.delete = function(userId, name){ 
+	$scope.deleteUser = function(userId, name){ 
 		
 		$confirm({text: '¿Desea eliminar al usuario, '+name+'?', title: 'Eliminar usuario', ok: 'Si', cancel: 'No'})
 			.then(function() {
@@ -25,11 +25,11 @@ angular.module('myApp.admin.users', ['ngRoute'])
 
 	}
 
-	$scope.update = function(user){
+	$scope.updateUser = function(user){
 		$confirm({user: user}, { templateUrl: 'templates/admin/users/update.html' });
 	}
 
-	$scope.create = function(){
+	$scope.createUser = function(){
 		$confirm({}, { templateUrl: 'templates/admin/users/create.html' });
 	}
 

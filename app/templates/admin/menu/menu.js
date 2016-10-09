@@ -17,25 +17,6 @@ angular.module('myApp.admin.menu', ['ngRoute'])
 		$rootScope.products = data;
 	});
 
-	/*$scope.delete = function(stayId, name){ 
-		
-		$confirm({text: '¿Desea eliminar la estancia, '+name+'?', title: 'Eliminar usuario', ok: 'Si', cancel: 'No'})
-			.then(function() {
-				if(API.deleteStay(stayId)){
-					$location.path('/admin');
-				}else{
-					console.log("Error deleting user.");
-				}
-				
-			});
-
-	}
-
-	$scope.update = function(stay){
-		$confirm({stay: stay}, { templateUrl: 'templates/admin/stays/update.html' });
-	}
-	*/
-
 	$scope.createCategory = function(){
 		$confirm({}, { templateUrl: 'templates/admin/menu/category/create.html' });
 	}
@@ -51,14 +32,11 @@ angular.module('myApp.admin.menu', ['ngRoute'])
 				if(API.deleteCategory(categoryId)){
 					$location.path('/admin');
 				}else{
-					console.log("Error deleting user.");
+					console.log("Error deleting category.");
 				}
 				
 			});
-
 	}
-
-
 
 	$scope.createSubcategory = function(category){
 		$confirm({category: category}, { templateUrl: 'templates/admin/menu/subcategory/create.html' });
@@ -75,7 +53,7 @@ angular.module('myApp.admin.menu', ['ngRoute'])
 				if(API.deleteSubcategory(subcategoryId)){
 					$location.path('/admin');
 				}else{
-					console.log("Error deleting user.");
+					console.log("Error deleting subcatery.");
 				}
 				
 			});
@@ -97,7 +75,7 @@ angular.module('myApp.admin.menu', ['ngRoute'])
 				if(API.deleteProduct(productId)){
 					$location.path('/admin');
 				}else{
-					console.log("Error deleting user.");
+					console.log("Error deleting product.");
 				}
 				
 			});
