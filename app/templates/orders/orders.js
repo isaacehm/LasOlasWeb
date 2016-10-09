@@ -8,13 +8,10 @@ angular.module('myApp.orders', ['ngRoute'])
 		$location.path('/login');
 
 	var socket = API.getSocket();
-	console.log(socket);
-	setTimeout(function(){
-		console.log(socket);
-	}, 10000);
 
-	socket.on('new order', function(order){
-		console.log('new order');
+	console.log(socket);
+
+	/*socket.on('newOrder', function(order){
 		$confirm({order: order}, { templateUrl: 'templates/orders/new.html' });
 
 		API.initOrders().then(function(data){
@@ -48,7 +45,7 @@ angular.module('myApp.orders', ['ngRoute'])
 			}
 	    });	
 
-	});
+	});*/
 
 	API.initOrders().then(function(data){
 		var date = new Date();
