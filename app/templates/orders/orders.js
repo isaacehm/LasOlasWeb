@@ -10,42 +10,7 @@ angular.module('myApp.orders', ['ngRoute'])
 	var socket = API.getSocket();
 	socket.on('new order', function(order){
 		$confirm({order: order}, { templateUrl: 'templates/orders/new.html' });
-
-		console.log(order);
-
 		$rootScope.orders.push(order);
-
-		/*API.initOrders().then(function(data){
-			var date = new Date();
-			if((date.getMonth()+1) < 10){
-				if(date.getDate() < 10){
-					var today = date.getFullYear()+"-0"+(date.getMonth()+1)+"-0"+date.getDate();
-				}else{
-					var today = date.getFullYear()+"-0"+(date.getMonth()+1)+"-"+date.getDate();
-				}
-			}else{
-				if(date.getDate() < 10){
-					var today = date.getFullYear()+"-"+(date.getMonth()+1)+"-0"+date.getDate();
-				}else{
-					var today = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate();
-				}
-			}
-
-			var orders = API.getOrders();
-			var order;
-			var actualOrders = [];
-
-			for (order in orders)
-				if( orders[order].date.substring(0,10) == today)
-					actualOrders.push(orders[order]);
-
-			if(actualOrders.length > 0){
-				$rootScope.orders = actualOrders;
-			}else{
-				$rootScope.orders = null;
-			}
-	    });*/
-
 	});
 
 	$scope.init = function(){
@@ -143,76 +108,13 @@ angular.module('myApp.orders', ['ngRoute'])
 
 	  	API.updateOrder(order, 'Procesada').then(function(data){
 	  		order.status = 'Procesada';
-
-	  		/*API.initOrders().then(function(data){
-					var date = new Date();
-					if((date.getMonth()+1) < 10){
-						if(date.getDate() < 10){
-							var today = date.getFullYear()+"-0"+(date.getMonth()+1)+"-0"+date.getDate();
-						}else{
-							var today = date.getFullYear()+"-0"+(date.getMonth()+1)+"-"+date.getDate();
-						}
-					}else{
-						if(date.getDate() < 10){
-							var today = date.getFullYear()+"-"+(date.getMonth()+1)+"-0"+date.getDate();
-						}else{
-							var today = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate();
-						}
-					}
-
-					var orders = API.getOrders();
-					var order;
-					var actualOrders = [];
-					for (order in orders){
-						if( orders[order].date.substring(0,10) == today)
-							actualOrders.push(orders[order]);
-					}
-
-					if(actualOrders.length > 0){
-						$rootScope.orders = actualOrders;
-					}else{
-						$rootScope.orders = null;
-					}
-		    });*/
 	  	});
 	}
 
 	$scope.chargeOrder = function(order){
 
 	  	API.updateOrder(order, 'Cobrada').then(function(data){
-
 	  		order.status = 'Cobrada';
-
-	  		/*API.initOrders().then(function(data){
-					var date = new Date();
-					if((date.getMonth()+1) < 10){
-						if(date.getDate() < 10){
-							var today = date.getFullYear()+"-0"+(date.getMonth()+1)+"-0"+date.getDate();
-						}else{
-							var today = date.getFullYear()+"-0"+(date.getMonth()+1)+"-"+date.getDate();
-						}
-					}else{
-						if(date.getDate() < 10){
-							var today = date.getFullYear()+"-"+(date.getMonth()+1)+"-0"+date.getDate();
-						}else{
-							var today = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate();
-						}
-					}
-
-					var orders = API.getOrders();
-					var order;
-					var actualOrders = [];
-					for (order in orders){
-						if( orders[order].date.substring(0,10) == today)
-							actualOrders.push(orders[order]);
-					}
-
-					if(actualOrders.length > 0){
-						$rootScope.orders = actualOrders;
-					}else{
-						$rootScope.orders = null;
-					}
-		    });*/
 	  	});
 	}
 
@@ -222,37 +124,7 @@ angular.module('myApp.orders', ['ngRoute'])
 				if(order._id == $rootScope.orders[i]._id){
 					$rootScope.orders.splice(i, 1);
 					break;
-				}
-			/*API.initOrders().then(function(data){
-				var date = new Date();
-				if((date.getMonth()+1) < 10){
-					if(date.getDate() < 10){
-						var today = date.getFullYear()+"-0"+(date.getMonth()+1)+"-0"+date.getDate();
-					}else{
-						var today = date.getFullYear()+"-0"+(date.getMonth()+1)+"-"+date.getDate();
-					}
-				}else{
-					if(date.getDate() < 10){
-						var today = date.getFullYear()+"-"+(date.getMonth()+1)+"-0"+date.getDate();
-					}else{
-						var today = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate();
-					}
-				}
-
-				var orders = API.getOrders();
-				var order;
-				var actualOrders = [];
-				for (order in orders){
-					if( orders[order].date.substring(0,10) == today)
-						actualOrders.push(orders[order]);
-				}
-
-				if(actualOrders.length > 0){
-					$rootScope.orders = actualOrders;
-				}else{
-					$rootScope.orders = null;
-				}
-	    });*/
+				}			
 		});
 	}
 
