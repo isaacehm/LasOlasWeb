@@ -81,6 +81,7 @@ angular.module('myApp.orders', ['ngRoute'])
 
 		$rootScope.date = date;
 		$rootScope.today = today;
+		console.log($rootScope.orders);
   });		
 
 		$scope.reprintOrder = function(order){
