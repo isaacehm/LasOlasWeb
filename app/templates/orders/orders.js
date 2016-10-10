@@ -8,7 +8,6 @@ angular.module('myApp.orders', ['ngRoute'])
 		$location.path('/login');
 
 	var socket = API.getSocket();
-
 	socket.on('new order', function(order){
 		$confirm({order: order}, { templateUrl: 'templates/orders/new.html' });
 
@@ -49,101 +48,103 @@ angular.module('myApp.orders', ['ngRoute'])
 
 	});
 
-	API.initOrders().then(function(data){
-		var date = new Date();
-		if((date.getMonth()+1) < 10){
-			if(date.getDate() < 10){
-				var today = date.getFullYear()+"-0"+(date.getMonth()+1)+"-0"+date.getDate();
+	$scope.init = function(){
+		API.initOrders().then(function(data){
+			var date = new Date();
+			if((date.getMonth()+1) < 10){
+				if(date.getDate() < 10){
+					var today = date.getFullYear()+"-0"+(date.getMonth()+1)+"-0"+date.getDate();
+				}else{
+					var today = date.getFullYear()+"-0"+(date.getMonth()+1)+"-"+date.getDate();
+				}
 			}else{
-				var today = date.getFullYear()+"-0"+(date.getMonth()+1)+"-"+date.getDate();
+				if(date.getDate() < 10){
+					var today = date.getFullYear()+"-"+(date.getMonth()+1)+"-0"+date.getDate();
+				}else{
+					var today = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate();
+				}
 			}
-		}else{
-			if(date.getDate() < 10){
-				var today = date.getFullYear()+"-"+(date.getMonth()+1)+"-0"+date.getDate();
+
+			var orders = API.getOrders();
+			var order;
+			var actualOrders = [];
+
+			for (order in orders)
+				if( orders[order].date.substring(0,10) == today)
+					actualOrders.push(orders[order]);
+
+			if(actualOrders.length > 0){
+				$rootScope.orders = actualOrders;
 			}else{
-				var today = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate();
+				$rootScope.orders = [];
 			}
-		}
 
-		var orders = API.getOrders();
-		var order;
-		var actualOrders = [];
+			$rootScope.date = date;
+			$rootScope.today = today;
+			console.log($rootScope.orders);
+	  });
+	}	
 
-		for (order in orders)
-			if( orders[order].date.substring(0,10) == today)
-				actualOrders.push(orders[order]);
+	$scope.reprintOrder = function(order){
+		$scope.printOrder(order);
+	}
 
-		if(actualOrders.length > 0){
-			$rootScope.orders = actualOrders;
-		}else{
-			$rootScope.orders = [];
-		}
+	  $scope.printOrder = function(order){
 
-		$rootScope.date = date;
-		$rootScope.today = today;
-		console.log($rootScope.orders);
-  });		
+	  	var producsByCategory = [];
 
-		$scope.reprintOrder = function(order){
-			$scope.printOrder(order);
-		}
+	  	API.initCategories().then(function(data){
+	  		var categories = data;
+	  		API.initSubcategories().then(function(data){
+	  			var subcategories = data;
+	  			categories.forEach(function(category){
+	  				var newEntry = {
+	  					'category':category.name,
+	  					'products': []
+	  				};
+	  				for(var i=0; i<order.products.length; i++)
+	  					if(category._id == order.products[i].categoryId){
+	  						newEntry.products.push({
+	  							'name': order.products[i].name,
+	  							'note': order.products[i].note,
+	  							'order': order.products[i].order,
+	  							'price': order.products[i].price,
+	  							'total': order.products[i].total
+	  						});
+	  					}
+						if(newEntry.products.length > 0)
+							producsByCategory.push(newEntry);
+	  			});
+	  			console.log(producsByCategory);
+	  			var template = '<table width="100%"><tr><th>Nombre</th><th>Cantidad</th><th>Nota</th><th>Importe</th><th>Total</th></tr>';
+	  			producsByCategory.forEach(function(entry){
+	  				template += '<tr><td colspan="5" style="text-align:left;border-bottom:1px solid black;"><b>'+entry.category+'</b></td></tr>';
+	  				entry.products.forEach(function(product){
+	  					template += '<tr>';
+	  					template += '<td>'+product.name+'</td>';
+	  					template += '<td>'+product.order+'</td>';
+	  					template += '<td>'+product.note+'</td>';
+	  					template += '<td>$'+product.price+'</td>';
+	  					template += '<td>$'+product.total+'</td>';
+	  					template += '</tr>';    					
+	  				});    				
+	  			});
+	  			template += '<tr><td colspan="5" style="text-align:right;border-top:1px solid black;"><b>TOTAL: $'+order.total+'</b></td></tr>';
+	  			template += '</table>';
+	  			$('#print-area').html(template);
+	  			window.print();
+	  		});
+	  	});
+	  }
 
-    $scope.printOrder = function(order){
+	  $scope.processOrder = function(order){
 
-    	var producsByCategory = [];
+	  	$scope.printOrder(order);
 
-    	API.initCategories().then(function(data){
-    		var categories = data;
-    		API.initSubcategories().then(function(data){
-    			var subcategories = data;
-    			categories.forEach(function(category){
-    				var newEntry = {
-    					'category':category.name,
-    					'products': []
-    				};
-    				for(var i=0; i<order.products.length; i++)
-    					if(category._id == order.products[i].categoryId){
-    						newEntry.products.push({
-    							'name': order.products[i].name,
-    							'note': order.products[i].note,
-    							'order': order.products[i].order,
-    							'price': order.products[i].price,
-    							'total': order.products[i].total
-    						});
-    					}
-  					if(newEntry.products.length > 0)
-  						producsByCategory.push(newEntry);
-    			});
-    			console.log(producsByCategory);
-    			var template = '<table width="100%"><tr><th>Nombre</th><th>Cantidad</th><th>Nota</th><th>Importe</th><th>Total</th></tr>';
-    			producsByCategory.forEach(function(entry){
-    				template += '<tr><td colspan="5" style="text-align:left;border-bottom:1px solid black;"><b>'+entry.category+'</b></td></tr>';
-    				entry.products.forEach(function(product){
-    					template += '<tr>';
-    					template += '<td>'+product.name+'</td>';
-    					template += '<td>'+product.order+'</td>';
-    					template += '<td>'+product.note+'</td>';
-    					template += '<td>$'+product.price+'</td>';
-    					template += '<td>$'+product.total+'</td>';
-    					template += '</tr>';    					
-    				});    				
-    			});
-    			template += '<tr><td colspan="5" style="text-align:right;border-top:1px solid black;"><b>TOTAL: $'+order.total+'</b></td></tr>';
-    			template += '</table>';
-    			$('#print-area').html(template);
-    			window.print();
-    		});
-    	});
-    }
+	  	API.updateOrder(order, 'Procesada').then(function(data){
+	  		order.status = 'Procesada';
 
-    $scope.processOrder = function(order){
-
-    	$scope.printOrder(order);
-
-    	API.updateOrder(order, 'Procesada').then(function(data){
-    		order.status = 'Procesada';
-
-    		/*API.initOrders().then(function(data){
+	  		/*API.initOrders().then(function(data){
 					var date = new Date();
 					if((date.getMonth()+1) < 10){
 						if(date.getDate() < 10){
@@ -173,16 +174,16 @@ angular.module('myApp.orders', ['ngRoute'])
 						$rootScope.orders = null;
 					}
 		    });*/
-    	});
+	  	});
 	}
 
 	$scope.chargeOrder = function(order){
 
-    	API.updateOrder(order, 'Cobrada').then(function(data){
+	  	API.updateOrder(order, 'Cobrada').then(function(data){
 
-    		order.status = 'Cobrada';
+	  		order.status = 'Cobrada';
 
-    		/*API.initOrders().then(function(data){
+	  		/*API.initOrders().then(function(data){
 					var date = new Date();
 					if((date.getMonth()+1) < 10){
 						if(date.getDate() < 10){
@@ -212,7 +213,7 @@ angular.module('myApp.orders', ['ngRoute'])
 						$rootScope.orders = null;
 					}
 		    });*/
-    	});
+	  	});
 	}
 
 	$scope.cancelOrder = function(order){
