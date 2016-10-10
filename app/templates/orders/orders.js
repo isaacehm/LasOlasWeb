@@ -46,7 +46,6 @@ angular.module('myApp.orders', ['ngRoute'])
 
 			$rootScope.date = date;
 			$rootScope.today = today;
-			console.log($rootScope.orders);
 	  });
 	}	
 
@@ -80,7 +79,6 @@ angular.module('myApp.orders', ['ngRoute'])
 						if(newEntry.products.length > 0)
 							productsByCategory.push(newEntry);
 	  			});
-	  			console.log(productsByCategory);
 	  			var template = '<p>'+order.stay+' '+order.stayNumber+' | '+order.employee+'</p><table width="100%"><tr><th>Nombre</th><th>Cantidad</th><th>Nota</th><th>Importe</th><th>Total</th></tr>';
 	  			productsByCategory.forEach(function(entry){
 	  				template += '<tr><td colspan="5" style="text-align:left;border-bottom:1px solid black;"><b>'+entry.category+'</b></td></tr>';
