@@ -81,7 +81,7 @@ angular.module('myApp.orders', ['ngRoute'])
 							productsByCategory.push(newEntry);
 	  			});
 	  			console.log(productsByCategory);
-	  			var template = '<p>'+order.stay+'</p><table width="100%"><tr><th>Nombre</th><th>Cantidad</th><th>Nota</th><th>Importe</th><th>Total</th></tr>';
+	  			var template = '<p>'+order.stay+' '+order.stayNumber+'</p><table width="100%"><tr><th>Nombre</th><th>Cantidad</th><th>Nota</th><th>Importe</th><th>Total</th></tr>';
 	  			productsByCategory.forEach(function(entry){
 	  				template += '<tr><td colspan="5" style="text-align:left;border-bottom:1px solid black;"><b>'+entry.category+'</b></td></tr>';
 	  				entry.products.forEach(function(product){
