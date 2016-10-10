@@ -14,126 +14,129 @@
 	</ul>
 </nav>
 
-<div class="container" ng-if="orders == null">
-	<h2>No ha sido enviada ninguna orden el día de hoy.</h2>
-</div>
+<div ng-init="init()" class="container">
 
-<div ng-init="init()" class="container" ng-if="orders.length > 0">
+	<div  ng-if="orders == null">
+		<h2>No ha sido enviada ninguna orden el día de hoy.</h2>
+	</div>
 
-	<h3 class="status-0">Pendientes</h3>
-	<uib-accordion close-others="oneAtATime">
-		<uib-accordion-group is-open="status.open" ng-repeat="order in orders" ng-if="order.status == 'Pendiente'">
-			<uib-accordion-heading>
-				{{order.stay}} {{order.stayNumber}}
-				<i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
-			</uib-accordion-heading>
+	<div ng-if="orders.length > 0">
 
-			<div class="right">
-				<button class="btn btn-primary" ng-click="processOrder(order)">Procesar</button>
-				<button class="btn btn-danger" ng-click="cancelOrder(order)">Anular</button>
-			</div>
+		<h3 class="status-0">Pendientes</h3>
+		<uib-accordion close-others="oneAtATime">
+			<uib-accordion-group is-open="status.open" ng-repeat="order in orders" ng-if="order.status == 'Pendiente'">
+				<uib-accordion-heading>
+					{{order.stay}} {{order.stayNumber}}
+					<i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
+				</uib-accordion-heading>
 
-			<ul>
-				<li ng-repeat="product in order.products">
-					<h4 class="product-name">{{product.name}}</h4>
-					<ul>
-						<li class="product product-order product-status-0">
-							<strong>Cantidad:</strong> <span>{{product.order}}</span>
-						</li>
+				<div class="right">
+					<button class="btn btn-primary" ng-click="processOrder(order)">Procesar</button>
+					<button class="btn btn-danger" ng-click="cancelOrder(order)">Anular</button>
+				</div>
 
-						<li class="product product-total product-status-0">
-							<strong>Total:</strong> <span>$ {{product.total}}</span>
-						</li>
+				<ul>
+					<li ng-repeat="product in order.products">
+						<h4 class="product-name">{{product.name}}</h4>
+						<ul>
+							<li class="product product-order product-status-0">
+								<strong>Cantidad:</strong> <span>{{product.order}}</span>
+							</li>
 
-						<li class="product product-note product-status-0" ng-if="product.note != ''">
-							<strong>Nota:</strong> <span>{{product.note}}</span>
-						</li>
-					</ul>
-				</li>
-			</ul>
+							<li class="product product-total product-status-0">
+								<strong>Total:</strong> <span>$ {{product.total}}</span>
+							</li>
 
-			<h3 class="order-total">Total orden: $ {{order.total}}</h3>
+							<li class="product product-note product-status-0" ng-if="product.note != ''">
+								<strong>Nota:</strong> <span>{{product.note}}</span>
+							</li>
+						</ul>
+					</li>
+				</ul>
 
-		</uib-accordion-group>
-	</uib-accordion>	
+				<h3 class="order-total">Total orden: $ {{order.total}}</h3>
 
-	<h3 class="status-1">Procesadas</h3>
-	<uib-accordion close-others="oneAtATime">
-		<uib-accordion-group is-open="status.open" ng-repeat="order in orders" ng-if="order.status == 'Procesada'">
-			<uib-accordion-heading>
-				{{order.stay}} {{order.stayNumber}}
-				<i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
-			</uib-accordion-heading>
+			</uib-accordion-group>
+		</uib-accordion>	
 
-			<div class="right">
-				<button class="btn btn-primary" ng-click="chargeOrder(order)">Cobrar</button>
-				<button class="btn btn-warning" ng-click="reprintOrder(order)">Reimprimir</button>
-				<button class="btn btn-danger" ng-click="cancelOrder(order)">Anular</button>
-			</div>
+		<h3 class="status-1">Procesadas</h3>
+		<uib-accordion close-others="oneAtATime">
+			<uib-accordion-group is-open="status.open" ng-repeat="order in orders" ng-if="order.status == 'Procesada'">
+				<uib-accordion-heading>
+					{{order.stay}} {{order.stayNumber}}
+					<i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
+				</uib-accordion-heading>
 
-			<ul>
-				<li ng-repeat="product in order.products">
-					<h4 class="product-name">{{product.name}}</h4>
-					<ul>
-						<li class="product product-order product-status-1">
-							<strong>Cantidad:</strong> <span>{{product.order}}</span>
-						</li>
+				<div class="right">
+					<button class="btn btn-primary" ng-click="chargeOrder(order)">Cobrar</button>
+					<button class="btn btn-warning" ng-click="reprintOrder(order)">Reimprimir</button>
+					<button class="btn btn-danger" ng-click="cancelOrder(order)">Anular</button>
+				</div>
 
-						<li class="product product-total product-status-1">
-							<strong>Total:</strong> <span>$ {{product.total}}</span>
-						</li>
+				<ul>
+					<li ng-repeat="product in order.products">
+						<h4 class="product-name">{{product.name}}</h4>
+						<ul>
+							<li class="product product-order product-status-1">
+								<strong>Cantidad:</strong> <span>{{product.order}}</span>
+							</li>
 
-						<li class="product product-note product-status-1" ng-if="product.note != ''">
-							<strong>Nota:</strong> <span>{{product.note}}</span>
-						</li>
-					</ul>
-				</li>
-			</ul>
+							<li class="product product-total product-status-1">
+								<strong>Total:</strong> <span>$ {{product.total}}</span>
+							</li>
 
-			<h3 class="order-total">Total orden: $ {{order.total}}</h3>
+							<li class="product product-note product-status-1" ng-if="product.note != ''">
+								<strong>Nota:</strong> <span>{{product.note}}</span>
+							</li>
+						</ul>
+					</li>
+				</ul>
 
-
-
-
-		</uib-accordion-group>
-	</uib-accordion>	
-
-	<h3 class="status-2">Cobradas</h3>
-	<uib-accordion close-others="oneAtATime">
-		<uib-accordion-group is-open="status.open" ng-repeat="order in orders" ng-if="order.status == 'Cobrada'">
-			<uib-accordion-heading>
-				{{order.stay}} {{order.stayNumber}}
-				<i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
-			</uib-accordion-heading>
-
-			<div class="right">
-				<button class="btn btn-warning" ng-click="reprintOrder(order)">Reimprimir</button>
-			</div>
-
-			<ul>
-				<li ng-repeat="product in order.products">
-					<h4 class="product-name">{{product.name}}</h4>
-					<ul>
-						<li class="product product-order product-status-2">
-							<strong>Cantidad:</strong> <span>{{product.order}}</span>
-						</li>
-
-						<li class="product product-total product-status-2">
-							<strong>Total:</strong> <span>$ {{product.total}}</span>
-						</li>
-
-						<li class="product product-note product-status-2" ng-if="product.note != ''">
-							<strong>Nota:</strong> <span>{{product.note}}</span>
-						</li>
-					</ul>
-				</li>
-			</ul>
-
-			<h3 class="order-total">Total orden: $ {{order.total}}</h3>
+				<h3 class="order-total">Total orden: $ {{order.total}}</h3>
 
 
-		</uib-accordion-group>
-	</uib-accordion>	
+
+
+			</uib-accordion-group>
+		</uib-accordion>	
+
+		<h3 class="status-2">Cobradas</h3>
+		<uib-accordion close-others="oneAtATime">
+			<uib-accordion-group is-open="status.open" ng-repeat="order in orders" ng-if="order.status == 'Cobrada'">
+				<uib-accordion-heading>
+					{{order.stay}} {{order.stayNumber}}
+					<i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
+				</uib-accordion-heading>
+
+				<div class="right">
+					<button class="btn btn-warning" ng-click="reprintOrder(order)">Reimprimir</button>
+				</div>
+
+				<ul>
+					<li ng-repeat="product in order.products">
+						<h4 class="product-name">{{product.name}}</h4>
+						<ul>
+							<li class="product product-order product-status-2">
+								<strong>Cantidad:</strong> <span>{{product.order}}</span>
+							</li>
+
+							<li class="product product-total product-status-2">
+								<strong>Total:</strong> <span>$ {{product.total}}</span>
+							</li>
+
+							<li class="product product-note product-status-2" ng-if="product.note != ''">
+								<strong>Nota:</strong> <span>{{product.note}}</span>
+							</li>
+						</ul>
+					</li>
+				</ul>
+
+				<h3 class="order-total">Total orden: $ {{order.total}}</h3>
+
+
+			</uib-accordion-group>
+		</uib-accordion>	
+	</div>
 </div>
 
 <div id="print-area">
