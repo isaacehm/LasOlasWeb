@@ -56,7 +56,7 @@ angular.module('myApp.orders', ['ngRoute'])
 
 	  $scope.printOrder = function(order){
 
-	  	var producsByCategory = [];
+	  	var productsByCategory = [];
 
 	  	API.initCategories().then(function(data){
 	  		var categories = data;
@@ -78,11 +78,11 @@ angular.module('myApp.orders', ['ngRoute'])
 	  						});
 	  					}
 						if(newEntry.products.length > 0)
-							producsByCategory.push(newEntry);
+							productsByCategory.push(newEntry);
 	  			});
-	  			console.log(producsByCategory);
-	  			var template = '<table width="100%"><tr><th>Nombre</th><th>Cantidad</th><th>Nota</th><th>Importe</th><th>Total</th></tr>';
-	  			producsByCategory.forEach(function(entry){
+	  			console.log(productsByCategory);
+	  			var template = '<p>'+order.stay+'</p><table width="100%"><tr><th>Nombre</th><th>Cantidad</th><th>Nota</th><th>Importe</th><th>Total</th></tr>';
+	  			productsByCategory.forEach(function(entry){
 	  				template += '<tr><td colspan="5" style="text-align:left;border-bottom:1px solid black;"><b>'+entry.category+'</b></td></tr>';
 	  				entry.products.forEach(function(product){
 	  					template += '<tr>';
