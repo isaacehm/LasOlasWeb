@@ -12,7 +12,9 @@ angular.module('myApp.orders', ['ngRoute'])
 	socket.on('new order', function(order){
 		$confirm({order: order}, { templateUrl: 'templates/orders/new.html' });
 
-		API.initOrders().then(function(data){
+		$rootScope.orders.push(order);
+
+		/*API.initOrders().then(function(data){
 			var date = new Date();
 			if((date.getMonth()+1) < 10){
 				if(date.getDate() < 10){
@@ -41,7 +43,7 @@ angular.module('myApp.orders', ['ngRoute'])
 			}else{
 				$rootScope.orders = null;
 			}
-	    });	
+	    });*/
 
 	});
 
