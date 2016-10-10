@@ -74,7 +74,7 @@ angular.module('myApp.orders', ['ngRoute'])
 		if(actualOrders.length > 0){
 			$rootScope.orders = actualOrders;
 		}else{
-			$rootScope.orders = null;
+			$rootScope.orders = [];
 		}
 
 		$rootScope.date = date;
