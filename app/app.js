@@ -1,7 +1,7 @@
 'use strict';
 
 //var myUrl = 'http://localhost:3000/api';
-var myUrl = 'http://oneidea.com.ar/balneario/api';
+const myUrl = 'http://oneidea.com.ar/balneario/api';
 
 angular.module('myApp', [
   'ngRoute',
