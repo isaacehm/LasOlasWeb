@@ -8,6 +8,7 @@ angular.module('myApp.reports', ['ngRoute'])
 		$location.path('/login');
 
 	$rootScope.reportType = undefined;
+	$rootScope.orders = undefined;
 
 	var date = new Date();
 	if((date.getMonth()+1) < 10){
@@ -117,7 +118,7 @@ angular.module('myApp.reports', ['ngRoute'])
 		$rootScope.reportType = '3';
 	}
 
-	$scope.type4 = function(){ 
+	$scope.type4 = function(){
 
 		API.initProducts().then(function(data){
 
@@ -134,11 +135,13 @@ angular.module('myApp.reports', ['ngRoute'])
 		});
 
 		$rootScope.reportType = '4';
+
+		API.initOrders().then(function(data){
+			$rootScope.orders = API.getOrders();
+    });
 	}
 
-	API.initOrders().then(function(data){
-		$rootScope.orders = API.getOrders();
-    });
+	
 
 
 
