@@ -135,13 +135,11 @@ angular.module('myApp.reports', ['ngRoute'])
 		});
 
 		$rootScope.reportType = '4';
-
-		API.initOrders().then(function(data){
-			$rootScope.orders = API.getOrders();
-    });
 	}
 
-	
+	API.initOrders().then(function(data){
+		$rootScope.orders = API.getOrders();
+  });
 
 
 
