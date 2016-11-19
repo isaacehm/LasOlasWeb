@@ -32,7 +32,9 @@
 </div>
 
 
-
+<div class="container" ng-if="!reportType">
+	<h4>Por favor, seleccione una de las opciones para generar/visualizar un reporte.</h4>
+</div>
 
 <div class="container" ng-if="reportType == '1'">
 	<div ng-repeat="employee in employees" ng-if="orders != null">
@@ -111,11 +113,13 @@
 
 </div>
 
+<!--
 <div class="container" ng-if="reportType == '3'">
 	<div ng-repeat="order in orders">
 		Tipo 3
 	</div>	
 </div>
+-->
 
 <div id="stock-container" class="container" ng-if="reportType == '4'">
 	<table>
@@ -124,10 +128,11 @@
 			<th>Precio</th>
 			<th>Cantidad en almacen</th>
 		</tr>
-		<tr ng-repeat="order in orders">
+		<tr ng-repeat="order in orders" ng-class="{'no-stock': order.stock <= 0}">
 			<td>{{order.name}}</td>
 			<td>${{order.price}}</td>
-			<td>{{order.stock}}</td>
+			<td ng-if="order.stock > 0">{{order.stock}}</td>
+			<td ng-if="order.stock <= 0">0</td>
 		</tr>
 	</table>
 

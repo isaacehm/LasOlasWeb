@@ -7,6 +7,8 @@ angular.module('myApp.reports', ['ngRoute'])
 	if ($cookies.get('session') == undefined)
 		$location.path('/login');
 
+	$rootScope.reportType = undefined;
+
 	var date = new Date();
 	if((date.getMonth()+1) < 10){
 		if(date.getDate() < 10){

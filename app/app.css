@@ -241,6 +241,11 @@ table tr th{
   margin-top: 20px !important;
 }
 
+.no-stock{
+  color: red;
+  font-weight: bold;
+}
+
 /**** CSS PRINT ****/
 #print-area{
   display: none;
