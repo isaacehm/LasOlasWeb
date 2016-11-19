@@ -79,7 +79,8 @@ angular.module('myApp.orders', ['ngRoute'])
 						if(newEntry.products.length > 0)
 							productsByCategory.push(newEntry);
 	  			});
-	  			var template = '<p>'+order.stay+' '+order.stayNumber+' | '+order.employee+'</p><table width="100%"><tr><th>Nombre</th><th>Cantidad</th><th>Nota</th><th>Importe</th><th>Total</th></tr>';
+	  			var orderDate = new Date(order.date);
+	  			var template = '<p>Fecha: '+orderDate.getDate()+'/'+(orderDate.getMonth()+1)+'/'+orderDate.getFullYear()+'</p><p>'+order.stay+' '+order.stayNumber+' | '+order.employee+' | Hora: '+orderDate.getHours()+':'+orderDate.getMinutes()+'</p><table width="100%"><tr><th>Nombre</th><th>Cantidad</th><th>Nota</th><th>Importe</th><th>Total</th></tr>';
 	  			productsByCategory.forEach(function(entry){
 	  				template += '<tr><td colspan="5" style="text-align:left;border-bottom:1px solid black;"><b>'+entry.category+'</b></td></tr>';
 	  				entry.products.forEach(function(product){

@@ -244,10 +244,10 @@ table tr th{
 /**** CSS PRINT ****/
 #print-area{
   display: none;
-  font-size: 10px;
+  font-size: 8px;
 }
 @page {
-  size: A5;
+  size: A6;
   /*margin: 0;*/
 }
 @media print {
@@ -256,7 +256,7 @@ table tr th{
     }
     #print-area { display: block; }
     html, body{
-      width: 400px;
-      height: 600px;
+      width: 200px;
+      height: 400px;
     }
 }
