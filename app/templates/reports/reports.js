@@ -71,7 +71,7 @@ angular.module('myApp.reports', ['ngRoute'])
 			API.getUsers().then(function(data){
 				$rootScope.employees = data;
 			});
-	    });
+    });
 
 		$rootScope.reportType = '1';
 	}
@@ -102,7 +102,7 @@ angular.module('myApp.reports', ['ngRoute'])
 			var total = 0.0;
 
 			for (order in orders)
-				if( orders[order].date.substring(0,10) == selectedDate){
+				if( orders[order].date.substring(0,10) == selectedDate && orders[order].status === 'Cobrada'){
 					selectedOrders.push(orders[order]);
 					total += parseFloat(orders[order].total);
 				}

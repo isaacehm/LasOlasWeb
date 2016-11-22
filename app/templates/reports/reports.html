@@ -37,8 +37,9 @@
 </div>
 
 <div class="container" ng-if="reportType == '1'">
+	<h4>Muestra los pedidos <b>cobrados</b> por empleado en la fecha seleccionada.</h4>
 	<div ng-repeat="employee in employees" ng-if="orders != null">
-		<h3>{{employee.name}}</h3>
+		<h4>{{employee.name}}</h4>
 		<uib-accordion close-others="oneAtATime">
 			<uib-accordion-group is-open="status.open" ng-repeat="order in orders" ng-if="order.employee == employee.name && order.status == 'Cobrada'">
 				<uib-accordion-heading>
