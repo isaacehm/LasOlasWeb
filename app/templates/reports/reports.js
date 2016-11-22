@@ -26,6 +26,7 @@ angular.module('myApp.reports', ['ngRoute'])
 	}
 
 	$scope.type1 = function(date){
+		console.log(date);
 		if(date == undefined)
 			date = new Date();
 
@@ -42,6 +43,8 @@ angular.module('myApp.reports', ['ngRoute'])
 				var selectedDate = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate();
 			}
 		}
+
+		console.log(selectedDate);
 		
 		API.initOrders().then(function(data){
 
@@ -49,6 +52,8 @@ angular.module('myApp.reports', ['ngRoute'])
 			var order;
 			var selectedOrders = [];
 			var total = 0.0;
+
+			console.log(orders);
 
 			for (order in orders)
 				if( orders[order].date.substring(0,10) == selectedDate){
