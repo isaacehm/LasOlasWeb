@@ -5,26 +5,26 @@
 <div class="modal-body ng-binding ng-scope">
 
 	<form>
-		<div> 
-			<label>Nombre:</label>
-			<input type="text" ng-model="product.name">
+		<div class="form-group"> 
+			<label for="product-name">Nombre:</label>
+			<input id="product-name" class="form-control" type="text" ng-model="product.name">
 		</div>
 
-		<div> 
-			<label>Limitado:</label>
-			<input type="radio" ng-model="product.limited" ng-value="true">
-			<label>No limitado:</label>
-			<input type="radio" ng-model="product.limited" ng-value="false">
+		<div class="form-group"> 
+			<label for="limited">Limitado:</label>
+			<input id="limited" class="form-control" type="radio" ng-model="product.limited" ng-value="true">
+			<label for="ilimited">No limitado:</label>
+			<input id="ilimited" class="form-control" type="radio" ng-model="product.limited" ng-value="false">
 		</div>
 
-		<div ng-show="product.limited == true">
-			<label>Stock:</label>
-			<input type="number" ng-model="product.stock">
+		<div class="form-group" ng-show="product.limited == true">
+			<label for="product-stock">Stock:</label>
+			<input id="product-stock" class="form-control" type="number" ng-model="product.stock">
 		</div>
 
-		<div> 
-			<label>Precio:</label>
-			<input type="number" ng-model="product.price">
+		<div class="form-group"> 
+			<label for="product-price">Precio:</label>
+			<input id="product-price" class="form-control" type="number" ng-model="product.price">
 		</div>
 
 	    <div class="modal-footer ng-scope">
