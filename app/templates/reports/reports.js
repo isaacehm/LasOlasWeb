@@ -9,6 +9,8 @@ angular.module('myApp.reports', ['ngRoute'])
 
 	$rootScope.reportType = undefined;
 	$rootScope.reportOrders = undefined;
+	$rootScope.productsWithStock = undefined;
+	$rootScope.productsWithoutStock = undefined;
 
 	var date = new Date();
 	if((date.getMonth()+1) < 10){
@@ -136,7 +138,7 @@ angular.module('myApp.reports', ['ngRoute'])
 				}
 
 			$rootScope.productsWithStock = productsWithStock;
-			$rootScope.productsWithoutStock = productsWithStock;
+			$rootScope.productsWithoutStock = productsWithoutStock;
 		});
 
 		$rootScope.reportType = '4';
