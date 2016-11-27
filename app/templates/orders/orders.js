@@ -14,39 +14,40 @@ angular.module('myApp.orders', ['ngRoute'])
 	});
 
 	$scope.init = function(){
-		API.initOrders().then(function(data){
-			var date = new Date();
-			if((date.getMonth()+1) < 10){
-				if(date.getDate() < 10){
-					var today = date.getFullYear()+"-0"+(date.getMonth()+1)+"-0"+date.getDate();
+		if(!$rootScope.orders || $rootScope.orders.length === 0)
+			API.initOrders().then(function(data){
+				var date = new Date();
+				if((date.getMonth()+1) < 10){
+					if(date.getDate() < 10){
+						var today = date.getFullYear()+"-0"+(date.getMonth()+1)+"-0"+date.getDate();
+					}else{
+						var today = date.getFullYear()+"-0"+(date.getMonth()+1)+"-"+date.getDate();
+					}
 				}else{
-					var today = date.getFullYear()+"-0"+(date.getMonth()+1)+"-"+date.getDate();
+					if(date.getDate() < 10){
+						var today = date.getFullYear()+"-"+(date.getMonth()+1)+"-0"+date.getDate();
+					}else{
+						var today = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate();
+					}
 				}
-			}else{
-				if(date.getDate() < 10){
-					var today = date.getFullYear()+"-"+(date.getMonth()+1)+"-0"+date.getDate();
+
+				var orders = API.getOrders();
+				var order;
+				var actualOrders = [];
+
+				for (order in orders)
+					if( orders[order].date.substring(0,10) == today)
+						actualOrders.push(orders[order]);
+
+				if(actualOrders.length > 0){
+					$rootScope.orders = actualOrders;
 				}else{
-					var today = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate();
+					$rootScope.orders = [];
 				}
-			}
 
-			var orders = API.getOrders();
-			var order;
-			var actualOrders = [];
-
-			for (order in orders)
-				if( orders[order].date.substring(0,10) == today)
-					actualOrders.push(orders[order]);
-
-			if(actualOrders.length > 0){
-				$rootScope.orders = actualOrders;
-			}else{
-				$rootScope.orders = [];
-			}
-
-			$rootScope.date = date;
-			$rootScope.today = today;
-	  });
+				$rootScope.date = date;
+				$rootScope.today = today;
+		  });
 	}	
 
 	$scope.reprintOrder = function(order){
