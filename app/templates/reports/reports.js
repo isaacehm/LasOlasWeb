@@ -50,8 +50,6 @@ angular.module('myApp.reports', ['ngRoute'])
 			var selectedOrders = [];
 			var total = 0.0;
 
-			console.log(orders);
-
 			for (order in orders)
 				if( orders[order].date.substring(0,10) == selectedDate){
 					selectedOrders.push(orders[order]);
@@ -99,7 +97,7 @@ angular.module('myApp.reports', ['ngRoute'])
 			var total = 0.0;
 
 			for (order in orders)
-				if( orders[order].date.substring(0,10) == selectedDate && orders[order].status === 'Cobrada'){
+				if( orders[order].date.substring(0,10) == selectedDate && orders[order].status == 'Cobrada'){
 					selectedOrders.push(orders[order]);
 					total += parseFloat(orders[order].total);
 				}
