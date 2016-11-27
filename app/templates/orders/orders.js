@@ -7,11 +7,14 @@ angular.module('myApp.orders', ['ngRoute'])
 	if ($cookies.get('session') == undefined)
 		$location.path('/login');
 
-	var socket = API.getSocket();
-	socket.on('new order', function(order){
-		$confirm({order: order}, { templateUrl: 'templates/orders/new.html' });
-		$rootScope.orders.push(order);
-	});
+	if(!$rootScope.socketDefined){
+		var socket = API.getSocket();
+		socket.on('new order', function(order){
+			$confirm({order: order}, { templateUrl: 'templates/orders/new.html' });
+			$rootScope.orders.push(order);
+		});
+		$rootScope.socketDefined = true;
+	}
 
 	$scope.init = function(){
 		if(!$rootScope.orders || $rootScope.orders.length === 0)
