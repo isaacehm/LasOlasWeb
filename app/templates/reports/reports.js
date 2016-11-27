@@ -8,7 +8,7 @@ angular.module('myApp.reports', ['ngRoute'])
 		$location.path('/login');
 
 	$rootScope.reportType = undefined;
-	$rootScope.orders = undefined;
+	$rootScope.reportOrders = undefined;
 
 	var date = new Date();
 	if((date.getMonth()+1) < 10){
@@ -44,8 +44,6 @@ angular.module('myApp.reports', ['ngRoute'])
 			}
 		}
 
-		console.log(selectedDate);
-		
 		API.initOrders().then(function(data){
 
 			var orders = API.getOrders();
@@ -62,10 +60,10 @@ angular.module('myApp.reports', ['ngRoute'])
 				}
 
 			if(selectedOrders.length > 0){
-				$rootScope.orders = selectedOrders;
+				$rootScope.reportOrders = selectedOrders;
 				$rootScope.total = total;
 			}else{
-				$rootScope.orders = null;
+				$rootScope.reportOrders = null;
 			}
 
 			API.getUsers().then(function(data){
@@ -108,10 +106,10 @@ angular.module('myApp.reports', ['ngRoute'])
 				}
 
 			if(selectedOrders.length > 0){
-				$rootScope.orders = selectedOrders;
+				$rootScope.reportOrders = selectedOrders;
 				$rootScope.total = total;
 			}else{
-				$rootScope.orders = null;
+				$rootScope.reportOrders = null;
 			}			
 	    });
 
@@ -130,20 +128,25 @@ angular.module('myApp.reports', ['ngRoute'])
 			var products = data;
 			var product;
 			var productsWithStock = [];
+			var productsWithoutStock = [];
 			var total = 0.0;
 
 			for (product in products)
-				if( products[product].stock != -1)
+				if( products[product].stock != -1){
 					productsWithStock.push(products[product]);
+				}else{
+					productsWithoutStock.push(products[product]);
+				}
 
-			$rootScope.orders = productsWithStock;
+			$rootScope.productsWithStock = productsWithStock;
+			$rootScope.productsWithoutStock = productsWithStock;
 		});
 
 		$rootScope.reportType = '4';
 	}
 
 	API.initOrders().then(function(data){
-		$rootScope.orders = API.getOrders();
+		$rootScope.reportOrders = API.getOrders();
   });
 
 
