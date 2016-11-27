@@ -128,7 +128,7 @@
 		<tr>
 			<th>Nombre del producto</th>
 			<th>Precio</th>
-			<th>Cantidad en almacen</th>
+			<th>Cantidad en almacén</th>
 		</tr>
 		<tr ng-repeat="order in productsWithStock" ng-class="{'no-stock': order.stock <= 0}">
 			<td>{{order.name}}</td>
@@ -143,10 +143,12 @@
 		<tr>
 			<th>Nombre del producto</th>
 			<th>Precio</th>
+			<th>Cantidad en almacén</th>
 		</tr>
 		<tr ng-repeat="order in productsWithoutStock">
 			<td>{{order.name}}</td>
-			<td>${{order.price}}</td>			
+			<td>${{order.price}}</td>
+			<td>No limitado</td>
 		</tr>
 	</table>
 

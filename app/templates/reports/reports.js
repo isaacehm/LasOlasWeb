@@ -26,7 +26,6 @@ angular.module('myApp.reports', ['ngRoute'])
 	}
 
 	$scope.type1 = function(date){
-		console.log(date);
 		if(date == undefined)
 			date = new Date();
 
