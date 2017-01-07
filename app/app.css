@@ -249,7 +249,7 @@ table tr th{
 /**** CSS PRINT ****/
 #print-area{
   display: none;
-  font-size: 8px;
+  font-size: 11px;
 }
 @page {
   size: A6;
