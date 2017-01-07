@@ -19,7 +19,8 @@
   "scripts": {
     "postinstall": "bower install",
     "prestart": "npm install",
-    "start": "http-server -a localhost -p 8000"
+    "start": "http-server -a localhost -p 8000" //Las Olas
+    //"start": "http-server -a localhost -p 5000" //Hawaii
   },
   "dependencies": {}
 }
