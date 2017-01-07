@@ -84,7 +84,7 @@ angular.module('myApp.orders', ['ngRoute'])
 							productsByCategory.push(newEntry);
 	  			});
 	  			var orderDate = new Date(order.date);
-	  			var template = '<p>Fecha: '+orderDate.getDate()+'/'+(orderDate.getMonth()+1)+'/'+orderDate.getFullYear()+' | Hora:'+(orderDate.getHours()+1)+':'+orderDate.getMinutes()+'</p><p>'+order.stay+' '+order.stayNumber+' | '+order.employee+'</p><table width="100%"><tr><th>Nombre</th><th>Cantidad</th><th>Nota</th><th>Importe</th><th>Total</th></tr>';
+	  			var template = '<p>Fecha: '+orderDate.getDate()+'/'+(orderDate.getMonth()+1)+'/'+orderDate.getFullYear()+' | Hora:'+(orderDate.getHours())+':'+orderDate.getMinutes()+'</p><p>'+order.stay+' '+order.stayNumber+' | '+order.employee+'</p><table width="100%"><tr><th>Nombre</th><th>Cantidad</th><th>Nota</th><th>Importe</th><th>Total</th></tr>';
 	  			productsByCategory.forEach(function(entry){
 	  				template += '<tr><td colspan="5" style="text-align:left;border-bottom:1px solid black;"><b>'+entry.category+'</b></td></tr>';
 	  				entry.products.forEach(function(product){
